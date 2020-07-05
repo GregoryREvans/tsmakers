@@ -2,8 +2,9 @@ import collections
 
 import abjad
 import tsmakers
-from .TimespanMaker import TimespanMaker
 from abjadext import rmakers
+
+from .TimespanMaker import TimespanMaker
 
 
 class CascadingTimespanMaker(TimespanMaker):

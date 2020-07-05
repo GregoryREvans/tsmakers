@@ -4,6 +4,9 @@ import collections
 import abjad
 import tsmakers
 
+from .PerformedTimespan import PerformedTimespan
+from .SilentTimespan import SilentTimespan
+
 
 class TimespanMaker(object):
     r"""Abstract base class for timespan makers.

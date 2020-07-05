@@ -1,12 +1,10 @@
-import collections
-import os
-
 import abjad
-import tsmakers
 from abjadext import rmakers
 
+from .HashCachingObject import HashCachingObject
 
-class MusicSpecifier(tsmakers.HashCachingObject):
+
+class MusicSpecifier(HashCachingObject):
     r"""A music specifier.
 
     ::

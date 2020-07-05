@@ -2,8 +2,9 @@ import collections
 
 import abjad
 import tsmakers
-from .TimespanMaker import TimespanMaker
 from abjad import mathtools
+
+from .TimespanMaker import TimespanMaker
 
 
 class DependentTimespanMaker(TimespanMaker):

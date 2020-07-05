@@ -1,5 +1,5 @@
 import abjad
-import tsmakers
+
 from .TimespanMaker import TimespanMaker
 
 
