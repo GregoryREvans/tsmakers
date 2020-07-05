@@ -3,7 +3,7 @@ import tsmakers
 
 
 class FloodedTimespanMaker(tsmakers.TimespanMaker):
-    r'''A flooded timespan maker.
+    r"""A flooded timespan maker.
 
     ::
 
@@ -77,7 +77,7 @@ class FloodedTimespanMaker(tsmakers.TimespanMaker):
                 ]
             )
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
@@ -86,19 +86,15 @@ class FloodedTimespanMaker(tsmakers.TimespanMaker):
     ### INITIALIZER ###
 
     def __init__(
-        self,
-        division_masks=None,
-        padding=None,
-        seed=None,
-        timespan_specifier=None,
-        ):
+        self, division_masks=None, padding=None, seed=None, timespan_specifier=None,
+    ):
         tsmakers.TimespanMaker.__init__(
             self,
             division_masks=division_masks,
             padding=padding,
             seed=seed,
             timespan_specifier=timespan_specifier,
-            )
+        )
 
     ### PRIVATE METHODS ###
 
@@ -108,7 +104,7 @@ class FloodedTimespanMaker(tsmakers.TimespanMaker):
         music_specifiers=None,
         target_timespan=None,
         timespan_list=None,
-        ):
+    ):
         start_offset = target_timespan.start_offset
         durations = [target_timespan.duration]
         new_timespans = abjad.TimespanList()
@@ -122,6 +118,6 @@ class FloodedTimespanMaker(tsmakers.TimespanMaker):
                 start_offset=start_offset,
                 timespan_specifier=self.timespan_specifier,
                 voice_name=context_name,
-                )
+            )
             new_timespans.extend(timespans)
         return new_timespans

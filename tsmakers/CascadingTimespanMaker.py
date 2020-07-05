@@ -1,5 +1,6 @@
-import abjad
 import collections
+
+import abjad
 import tsmakers
 from abjadext import rmakers
 
@@ -152,13 +153,13 @@ class CascadingTimespanMaker(tsmakers.TimespanMaker):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_cascade_pattern',
-        '_fuse_groups',
-        '_playing_talea',
-        '_playing_groupings',
-        '_repeat',
-        '_silence_talea',
-        )
+        "_cascade_pattern",
+        "_fuse_groups",
+        "_playing_talea",
+        "_playing_groupings",
+        "_repeat",
+        "_silence_talea",
+    )
 
     ### INITIALIZER ###
 
@@ -168,26 +169,20 @@ class CascadingTimespanMaker(tsmakers.TimespanMaker):
         division_masks=None,
         fuse_groups=None,
         padding=None,
-        playing_talea=rmakers.Talea(
-            counts=[4],
-            denominator=16,
-            ),
+        playing_talea=rmakers.Talea(counts=[4], denominator=16,),
         playing_groupings=(1,),
         seed=None,
         repeat=True,
-        silence_talea=rmakers.Talea(
-            counts=[4],
-            denominator=16,
-            ),
+        silence_talea=rmakers.Talea(counts=[4], denominator=16,),
         timespan_specifier=None,
-        ):
+    ):
         tsmakers.TimespanMaker.__init__(
             self,
             division_masks=division_masks,
             padding=padding,
             seed=seed,
             timespan_specifier=timespan_specifier,
-            )
+        )
         self._initialize_cascade_pattern(cascade_pattern)
         self._initialize_fuse_groups(fuse_groups)
         self._initialize_playing_talea(playing_talea)
@@ -240,7 +235,7 @@ class CascadingTimespanMaker(tsmakers.TimespanMaker):
         music_specifiers=None,
         target_timespan=None,
         timespan_list=None,
-        ):
+    ):
         # setup state
         context_names = abjad.CyclicTuple(music_specifiers)
         context_index = self.seed or 0
@@ -285,13 +280,11 @@ class CascadingTimespanMaker(tsmakers.TimespanMaker):
                     start_offset=start_offset,
                     timespan_specifier=self.timespan_specifier,
                     voice_name=context_name,
-                    )
-                if all(isinstance(_, tsmakers.SilentTimespan)
-                    for _ in new_timespans):
+                )
+                if all(isinstance(_, tsmakers.SilentTimespan) for _ in new_timespans):
                     new_timespans[:] = []
                 if context_name not in new_timespan_mapping:
-                    new_timespan_mapping[context_name] = \
-                        abjad.TimespanList()
+                    new_timespan_mapping[context_name] = abjad.TimespanList()
                 new_timespan_mapping[context_name].extend(new_timespans)
                 context_index += cascade_step
                 context_seeds[context_name] += 1

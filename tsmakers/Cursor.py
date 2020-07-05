@@ -1,7 +1,8 @@
 import abjad
 
+
 class Cursor(object):
-    r'''A cursor.
+    r"""A cursor.
 
     ..  container:: example
 
@@ -79,14 +80,14 @@ class Cursor(object):
             Duration(1, 16)
             Duration(3, 16)
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_sequence',
-        '_index',
-        )
+        "_sequence",
+        "_index",
+    )
 
     ### INITIALIZER ###
 

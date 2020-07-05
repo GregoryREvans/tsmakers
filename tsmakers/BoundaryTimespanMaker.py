@@ -1,12 +1,12 @@
-import abjad
 import collections
-from abjadext import rmakers
-import tsmakers
 
+import abjad
+import tsmakers
+from abjadext import rmakers
 
 
 class BoundaryTimespanMaker(tsmakers.TimespanMaker):
-    r'''A boundary timespan-maker.
+    r"""A boundary timespan-maker.
 
     ::
 
@@ -106,20 +106,20 @@ class BoundaryTimespanMaker(tsmakers.TimespanMaker):
                 ]
             )
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_labels',
-        '_start_anchor',
-        '_start_talea',
-        '_start_groupings',
-        '_stop_anchor',
-        '_stop_talea',
-        '_stop_groupings',
-        '_voice_names',
-        )
+        "_labels",
+        "_start_anchor",
+        "_start_talea",
+        "_start_groupings",
+        "_stop_anchor",
+        "_stop_talea",
+        "_stop_groupings",
+        "_voice_names",
+    )
 
     ### INITIALIZER ###
 
@@ -137,24 +137,21 @@ class BoundaryTimespanMaker(tsmakers.TimespanMaker):
         seed=None,
         timespan_specifier=None,
         voice_names=None,
-        ):
+    ):
         tsmakers.TimespanMaker.__init__(
             self,
             division_masks=division_masks,
             padding=padding,
             seed=seed,
             timespan_specifier=timespan_specifier,
-            )
+        )
 
         if start_talea is not None:
             if not isinstance(start_talea, rmakers.Talea):
                 start_duration = abjad.Duration(start_talea)
                 counts = [start_duration.numerator]
                 denominator = start_duration.denominator
-                start_talea = rmakers.Talea(
-                    counts=counts,
-                    denominator=denominator,
-                    )
+                start_talea = rmakers.Talea(counts=counts, denominator=denominator,)
             assert isinstance(start_talea, rmakers.Talea)
             assert start_talea.counts
             assert all(0 < x for x in start_talea.counts)
@@ -173,10 +170,7 @@ class BoundaryTimespanMaker(tsmakers.TimespanMaker):
                 stop_duration = abjad.Duration(stop_talea)
                 counts = [stop_duration.numerator]
                 denominator = stop_duration.denominator
-                stop_talea = rmakers.Talea(
-                    counts=counts,
-                    denominator=denominator,
-                    )
+                stop_talea = rmakers.Talea(counts=counts, denominator=denominator,)
             assert isinstance(stop_talea, rmakers.Talea)
             assert stop_talea.counts
             assert all(0 < x for x in stop_talea.counts)
@@ -208,23 +202,17 @@ class BoundaryTimespanMaker(tsmakers.TimespanMaker):
     ### PRIVATE METHODS ###
 
     def _collect_preexisting_timespans(
-        self,
-        target_timespan=None,
-        timespan_list=None,
-        ):
-        
+        self, target_timespan=None, timespan_list=None,
+    ):
+
         preexisting_timespans = abjad.TimespanList()
         for timespan in timespan_list:
-            assert isinstance(timespan, (
-                tsmakers.PerformedTimespan,
-                tsmakers.SilentTimespan,
-                ))
+            assert isinstance(
+                timespan, (tsmakers.PerformedTimespan, tsmakers.SilentTimespan,)
+            )
             if isinstance(timespan, tsmakers.SilentTimespan):
                 continue
-            if (
-                self.voice_names and
-                timespan.voice_name not in self.voice_names
-                ):
+            if self.voice_names and timespan.voice_name not in self.voice_names:
                 continue
             if self.labels:
                 if not timespan.music_specifier:
@@ -245,8 +233,7 @@ class BoundaryTimespanMaker(tsmakers.TimespanMaker):
         music_specifiers=None,
         target_timespan=None,
         timespan_list=None,
-        ):
-        
+    ):
 
         new_timespans = abjad.TimespanList()
         if not self.voice_names and not self.labels:
@@ -280,28 +267,24 @@ class BoundaryTimespanMaker(tsmakers.TimespanMaker):
                     stop_talea.backtrack()
                     stop_groupings.backtrack()
             else:
-                    next(start_talea)
-                    next(start_groupings)
-                    next(stop_talea)
-                    next(stop_groupings)
+                next(start_talea)
+                next(start_groupings)
+                next(stop_talea)
+                next(stop_groupings)
 
         context_counter = collections.Counter()
         preexisting_timespans = self._collect_preexisting_timespans(
-            target_timespan=target_timespan,
-            timespan_list=timespan_list,
-            )
+            target_timespan=target_timespan, timespan_list=timespan_list,
+        )
         new_timespan_mapping = {}
-        for group_index, group in enumerate(
-            preexisting_timespans.partition(True)
-            ):
+        for group_index, group in enumerate(preexisting_timespans.partition(True)):
             for context_name, music_specifier in music_specifiers.items():
                 if context_name not in new_timespan_mapping:
                     continue
                 new_timespan_mapping[context_name] - group.timespan
             for context_name, music_specifier in music_specifiers.items():
                 if context_name not in new_timespan_mapping:
-                    new_timespan_mapping[context_name] = \
-                        abjad.TimespanList()
+                    new_timespan_mapping[context_name] = abjad.TimespanList()
                 context_seed = context_counter[context_name]
                 start_durations = []
                 for _ in range(next(start_groupings)):
@@ -313,7 +296,7 @@ class BoundaryTimespanMaker(tsmakers.TimespanMaker):
                 if start_durations:
                     group_start = group.start_offset
                     if self.start_anchor is abjad.Right:
-                        #print('!!!', float(group_start), float(group_start -
+                        # print('!!!', float(group_start), float(group_start -
                         #    sum(start_durations)))
                         group_start -= sum(start_durations)
                     start_timespans = music_specifier(
@@ -325,7 +308,7 @@ class BoundaryTimespanMaker(tsmakers.TimespanMaker):
                         start_offset=group_start,
                         timespan_specifier=self.timespan_specifier,
                         voice_name=context_name,
-                        )
+                    )
                     context_counter[context_name] += 1
                 if stop_durations:
                     group_stop = group.stop_offset
@@ -340,9 +323,9 @@ class BoundaryTimespanMaker(tsmakers.TimespanMaker):
                         start_offset=group_stop,
                         timespan_specifier=self.timespan_specifier,
                         voice_name=context_name,
-                        )
+                    )
                     context_counter[context_name] += 1
-                #if start_timespans and stop_timespans:
+                # if start_timespans and stop_timespans:
                 #    start_timespans & group.timespan
                 new_timespan_mapping[context_name].extend(start_timespans)
                 new_timespan_mapping[context_name].extend(stop_timespans)

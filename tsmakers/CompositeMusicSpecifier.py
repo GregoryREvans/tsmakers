@@ -1,10 +1,11 @@
-import abjad
 import collections
+
+import abjad
 import tsmakers
 
 
 class CompositeMusicSpecifier(tsmakers.HashCachingObject):
-    r'''A composite music specifier.
+    r"""A composite music specifier.
 
     ::
 
@@ -182,19 +183,19 @@ class CompositeMusicSpecifier(tsmakers.HashCachingObject):
                 ]
             )
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_discard_inner_offsets',
-        '_primary_music_specifier',
-        '_primary_voice_name',
-        '_rotation_indices',
-        '_secondary_music_specifier',
-        '_secondary_voice_name',
-        )
- 
+        "_discard_inner_offsets",
+        "_primary_music_specifier",
+        "_primary_voice_name",
+        "_rotation_indices",
+        "_secondary_music_specifier",
+        "_secondary_voice_name",
+    )
+
     ### INITIALIZER ###
 
     def __init__(
@@ -205,7 +206,7 @@ class CompositeMusicSpecifier(tsmakers.HashCachingObject):
         rotation_indices=None,
         secondary_music_specifier=None,
         secondary_voice_name=None,
-        ):
+    ):
         tsmakers.HashCachingObject.__init__(self)
         prototype = tsmakers.MusicSpecifierSequence
         if discard_inner_offsets is not None:
@@ -214,7 +215,7 @@ class CompositeMusicSpecifier(tsmakers.HashCachingObject):
         if not isinstance(primary_music_specifier, prototype):
             primary_music_specifier = tsmakers.MusicSpecifierSequence(
                 music_specifiers=primary_music_specifier,
-                )
+            )
         self._primary_music_specifier = primary_music_specifier
         if primary_voice_name is not None:
             primary_voice_name = str(primary_voice_name)
@@ -228,7 +229,7 @@ class CompositeMusicSpecifier(tsmakers.HashCachingObject):
         if not isinstance(secondary_music_specifier, prototype):
             secondary_music_specifier = tsmakers.MusicSpecifierSequence(
                 music_specifiers=secondary_music_specifier,
-                )
+            )
         self._secondary_music_specifier = secondary_music_specifier
         if secondary_voice_name is not None:
             secondary_voice_name = str(secondary_voice_name)
@@ -247,7 +248,7 @@ class CompositeMusicSpecifier(tsmakers.HashCachingObject):
         start_offset=None,
         timespan_specifier=None,
         voice_name=None,
-        ):
+    ):
         seed = seed or 0
         rotation_indices = self.rotation_indices or (0,)
         rotation_indices = abjad.CyclicTuple(rotation_indices)
@@ -271,7 +272,7 @@ class CompositeMusicSpecifier(tsmakers.HashCachingObject):
             start_offset=start_offset,
             timespan_specifier=timespan_specifier,
             voice_name=self.primary_voice_name,
-            )
+        )
         secondary_timespans = self.secondary_music_specifier(
             durations=secondary_durations,
             layer=layer,
@@ -282,7 +283,7 @@ class CompositeMusicSpecifier(tsmakers.HashCachingObject):
             start_offset=start_offset,
             timespan_specifier=timespan_specifier,
             voice_name=self.secondary_voice_name,
-            )
+        )
         timespans = primary_timespans[:] + secondary_timespans[:]
         timespans = abjad.TimespanList(timespans)
         timespans.sort()

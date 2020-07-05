@@ -3,15 +3,15 @@ from abjad import mathtools
 
 
 class SilentTimespan(abjad.Timespan):
-    r'''A silent timespan.
-    '''
+    r"""A silent timespan.
+    """
 
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_layer',
-        '_voice_name',
-        )
+        "_layer",
+        "_voice_name",
+    )
 
     ### INITIALIZER ###
 
@@ -21,12 +21,10 @@ class SilentTimespan(abjad.Timespan):
         stop_offset=mathtools.Infinity(),
         layer=None,
         voice_name=None,
-        ):
+    ):
         abjad.Timespan.__init__(
-            self,
-            start_offset=start_offset,
-            stop_offset=stop_offset,
-            )
+            self, start_offset=start_offset, stop_offset=stop_offset,
+        )
         if layer is not None:
             layer = int(layer)
         self._layer = layer
@@ -35,14 +33,11 @@ class SilentTimespan(abjad.Timespan):
     ### PRIVATE METHODS ###
 
     def _as_postscript(
-        self,
-        postscript_x_offset,
-        postscript_y_offset,
-        postscript_scale,
-        ):
-        start = (float(self.start_offset) * postscript_scale)
+        self, postscript_x_offset, postscript_y_offset, postscript_scale,
+    ):
+        start = float(self.start_offset) * postscript_scale
         start -= postscript_x_offset
-        stop = (float(self.stop_offset) * postscript_scale)
+        stop = float(self.stop_offset) * postscript_scale
         stop -= postscript_x_offset
         ps = abjad.Postscript()
         ps = ps.moveto(start, postscript_y_offset)
@@ -59,9 +54,9 @@ class SilentTimespan(abjad.Timespan):
         if self.layer is not None:
             ps = ps.moveto(start, postscript_y_offset)
             ps = ps.rmoveto(0.25, 0.5)
-            #ps = ps.scale(0.8, 0.8)
+            # ps = ps.scale(0.8, 0.8)
             ps = ps.show(str(self.layer))
-            #ps = ps.scale(1.25, 1.25)
+            # ps = ps.scale(1.25, 1.25)
         return ps
 
     ### PUBLIC PROPERTIES ###

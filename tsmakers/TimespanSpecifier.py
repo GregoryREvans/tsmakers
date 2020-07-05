@@ -6,19 +6,16 @@ class TimespanSpecifier(object):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_forbid_fusing',
-        '_forbid_splitting',
-        '_minimum_duration',
-        )
+        "_forbid_fusing",
+        "_forbid_splitting",
+        "_minimum_duration",
+    )
 
     ### INITIALIZER ###
 
     def __init__(
-        self,
-        forbid_fusing=None,
-        forbid_splitting=None,
-        minimum_duration=None,
-        ):
+        self, forbid_fusing=None, forbid_splitting=None, minimum_duration=None,
+    ):
         if forbid_fusing is not None:
             forbid_fusing = bool(forbid_fusing)
         self._forbid_fusing = forbid_fusing

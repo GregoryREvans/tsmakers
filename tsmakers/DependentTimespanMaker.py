@@ -1,12 +1,12 @@
-import abjad
 import collections
+
+import abjad
 import tsmakers
 from abjad import mathtools
 
 
-
 class DependentTimespanMaker(tsmakers.TimespanMaker):
-    r'''A dependent timespan-maker.
+    r"""A dependent timespan-maker.
 
     ::
 
@@ -97,19 +97,19 @@ class DependentTimespanMaker(tsmakers.TimespanMaker):
                 ]
             )
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_hysteresis',
-        '_include_inner_starts',
-        '_include_inner_stops',
-        '_inspect_music',
-        '_labels',
-        '_rotation_indices',
-        '_voice_names',
-        )
+        "_hysteresis",
+        "_include_inner_starts",
+        "_include_inner_stops",
+        "_inspect_music",
+        "_labels",
+        "_rotation_indices",
+        "_voice_names",
+    )
 
     ### INITIALIZER ###
 
@@ -126,14 +126,14 @@ class DependentTimespanMaker(tsmakers.TimespanMaker):
         seed=None,
         timespan_specifier=None,
         voice_names=None,
-        ):
+    ):
         tsmakers.TimespanMaker.__init__(
             self,
             division_masks=division_masks,
             padding=padding,
             seed=seed,
             timespan_specifier=timespan_specifier,
-            )
+        )
         if hysteresis is not None:
             hysteresis = abjad.Duration(hysteresis)
             assert 0 < hysteresis
@@ -165,38 +165,36 @@ class DependentTimespanMaker(tsmakers.TimespanMaker):
     ### PRIVATE METHODS ###
 
     def _collect_preexisting_timespans(
-        self,
-        target_timespan=None,
-        timespan_list=None,
-        ):
+        self, target_timespan=None, timespan_list=None,
+    ):
         preexisting_timespans = abjad.TimespanList()
         for timespan in timespan_list:
             if not isinstance(timespan, tsmakers.PerformedTimespan):
                 continue
-            if (
-                self.voice_names and
-                timespan.voice_name not in self.voice_names
-                ):
+            if self.voice_names and timespan.voice_name not in self.voice_names:
                 continue
             if not self.labels:
                 pass
-            elif not hasattr(timespan, 'music_specifier') or \
-                not timespan.music_specifier or \
-                not timespan.music_specifier.labels:
+            elif (
+                not hasattr(timespan, "music_specifier")
+                or not timespan.music_specifier
+                or not timespan.music_specifier.labels
+            ):
                 continue
-            elif not any(label in timespan.music_specifier.labels
-                for label in self.labels):
+            elif not any(
+                label in timespan.music_specifier.labels for label in self.labels
+            ):
                 continue
             preexisting_timespans.append(timespan)
             if self.inspect_music and timespan.music:
                 outer_start_offset = timespan.start_offset
-                inner_start_offset = \
+                inner_start_offset = (
                     abjad.inspect(timespan.music).timespan().start_offset
+                )
                 assert inner_start_offset == 0
                 for division in timespan.music:
                     division_timespan = abjad.inspect(division).timespan()
-                    division_timespan = division_timespan.translate(
-                        outer_start_offset)
+                    division_timespan = division_timespan.translate(outer_start_offset)
                     preexisting_timespans.append(division_timespan)
         preexisting_timespans & target_timespan
         return preexisting_timespans
@@ -223,7 +221,7 @@ class DependentTimespanMaker(tsmakers.TimespanMaker):
         music_specifiers=None,
         target_timespan=None,
         timespan_list=None,
-        ):
+    ):
         new_timespans = abjad.TimespanList()
         if not self.voice_names and not self.labels:
             return new_timespans
@@ -231,11 +229,11 @@ class DependentTimespanMaker(tsmakers.TimespanMaker):
         rotation_indices = abjad.CyclicTuple(rotation_indices)
         context_counter = collections.Counter()
         preexisting_timespans = self._collect_preexisting_timespans(
-            target_timespan=target_timespan,
-            timespan_list=timespan_list,
-            )
+            target_timespan=target_timespan, timespan_list=timespan_list,
+        )
         partitioned_timespans = self._partition_preexisting_timespans(
-            preexisting_timespans)
+            preexisting_timespans
+        )
         for group_index, group in enumerate(partitioned_timespans):
             rotation_index = rotation_indices[group_index]
             offsets = set()
@@ -261,7 +259,7 @@ class DependentTimespanMaker(tsmakers.TimespanMaker):
                     start_offset=start_offset,
                     timespan_specifier=self.timespan_specifier,
                     voice_name=context_name,
-                    )
+                )
                 context_counter[context_name] += 1
                 new_timespans.extend(timespans)
         return new_timespans

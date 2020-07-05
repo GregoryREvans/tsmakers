@@ -1,13 +1,13 @@
-import abjad
 import collections
+
+import abjad
 import tsmakers
 from abjad import mathtools
 from abjadext import rmakers
 
 
-
 class MusicSpecifierSequence(object):
-    r'''A music specifier sequence.
+    r"""A music specifier sequence.
 
     ::
 
@@ -31,32 +31,31 @@ class MusicSpecifierSequence(object):
             music_specifiers=('one', 'two', 'three'),
             )
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_application_rate',
-        '_music_specifiers',
-        )
+        "_application_rate",
+        "_music_specifiers",
+    )
 
     ### INITIALIZER ###
 
     def __init__(
-        self,
-        application_rate=None,
-        music_specifiers=None,
-        ):
+        self, application_rate=None, music_specifiers=None,
+    ):
         if application_rate is not None:
-            application_rate = application_rate or 'phrase'
-            assert application_rate in ('division', 'phrase')
+            application_rate = application_rate or "phrase"
+            assert application_rate in ("division", "phrase")
         if music_specifiers is None:
             music_specifiers = [None]
-        if not isinstance(music_specifiers, collections.Sequence) or \
-            isinstance(music_specifiers, str):
+        if not isinstance(music_specifiers, collections.Sequence) or isinstance(
+            music_specifiers, str
+        ):
             music_specifiers = [music_specifiers]
         music_specifiers = tuple(music_specifiers)
-        #music_specifiers = abjad.CyclicTuple(music_specifiers)
+        # music_specifiers = abjad.CyclicTuple(music_specifiers)
         assert len(music_specifiers)
         self._application_rate = application_rate
         self._music_specifiers = music_specifiers
@@ -74,10 +73,9 @@ class MusicSpecifierSequence(object):
         start_offset=None,
         timespan_specifier=None,
         voice_name=None,
-        ):
+    ):
         timespans = abjad.TimespanList()
-        timespan_specifier = timespan_specifier or \
-            tsmakers.TimespanSpecifier()
+        timespan_specifier = timespan_specifier or tsmakers.TimespanSpecifier()
         seed = seed or 0
         division_mask_seed = division_mask_seed or 0
         durations = [_ for _ in durations if _]
@@ -100,12 +98,13 @@ class MusicSpecifierSequence(object):
                 start_offset=start_offset,
                 stop_offset=stop_offset,
                 voice_name=voice_name,
-                )
+            )
             if not division_masks:
                 timespans.append(timespan)
             else:
                 output_mask = division_masks.get_matching_pattern(
-                    i, offset_pair_count + 1, rotation=division_mask_seed)
+                    i, offset_pair_count + 1, rotation=division_mask_seed
+                )
                 if output_mask is None:
                     timespans.append(timespan)
                 elif isinstance(output_mask, rmakers.SustainMask):
@@ -113,7 +112,7 @@ class MusicSpecifierSequence(object):
                 elif isinstance(output_mask, rmakers.SilenceMask):
                     pass
             division_mask_seed += 1
-            if self.application_rate == 'division':
+            if self.application_rate == "division":
                 seed += 1
 
         if padding:
@@ -124,14 +123,14 @@ class MusicSpecifierSequence(object):
                     start_offset=shard.start_offset - padding,
                     stop_offset=shard.start_offset,
                     voice_name=voice_name,
-                    )
+                )
                 silent_timespans.append(silent_timespan_one)
                 silent_timespan_two = tsmakers.SilentTimespan(
                     layer=layer,
                     start_offset=shard.stop_offset,
                     stop_offset=shard.stop_offset + padding,
                     voice_name=voice_name,
-                    )
+                )
                 silent_timespans.append(silent_timespan_two)
             silent_timespans.compute_logical_or()
             for timespan in timespans:
@@ -151,10 +150,7 @@ class MusicSpecifierSequence(object):
 
     def transpose(self, expr):
         music_specifiers = [_.transpose(expr) for _ in self.music_specifiers]
-        return abjad.new(
-            self,
-            music_specifiers=music_specifiers,
-            )
+        return abjad.new(self, music_specifiers=music_specifiers,)
 
     ### PUBLIC PROPERTIES ###
 

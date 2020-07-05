@@ -1,11 +1,12 @@
-import abjad
 import collections
+
+import abjad
 import tsmakers
 from abjadext import rmakers
 
 
 class TaleaTimespanMaker(tsmakers.TimespanMaker):
-    r'''A talea timespan maker.
+    r"""A talea timespan maker.
 
     ::
 
@@ -148,22 +149,22 @@ class TaleaTimespanMaker(tsmakers.TimespanMaker):
                 ]
             )
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_fuse_groups',
-        '_initial_silence_talea',
-        '_playing_talea',
-        '_playing_groupings',
-        '_reflect',
-        '_repeat',
-        '_silence_talea',
-        '_step_anchor',
-        '_synchronize_groupings',
-        '_synchronize_step',
-        )
+        "_fuse_groups",
+        "_initial_silence_talea",
+        "_playing_talea",
+        "_playing_groupings",
+        "_reflect",
+        "_repeat",
+        "_silence_talea",
+        "_step_anchor",
+        "_synchronize_groupings",
+        "_synchronize_step",
+    )
 
     ### INITIALIZER ###
 
@@ -173,30 +174,24 @@ class TaleaTimespanMaker(tsmakers.TimespanMaker):
         initial_silence_talea=None,
         division_masks=None,
         padding=None,
-        playing_talea=rmakers.Talea(
-            counts=[4],
-            denominator=16,
-            ),
+        playing_talea=rmakers.Talea(counts=[4], denominator=16,),
         playing_groupings=(1,),
         reflect=None,
         repeat=True,
         seed=None,
-        silence_talea=rmakers.Talea(
-            counts=[4],
-            denominator=16,
-            ),
+        silence_talea=rmakers.Talea(counts=[4], denominator=16,),
         step_anchor=abjad.Right,
         synchronize_groupings=False,
         synchronize_step=False,
         timespan_specifier=None,
-        ):
+    ):
         tsmakers.TimespanMaker.__init__(
             self,
             division_masks=division_masks,
             padding=padding,
             seed=seed,
             timespan_specifier=timespan_specifier,
-            )
+        )
 
         if fuse_groups is not None:
             fuse_groups = bool(fuse_groups)
@@ -245,7 +240,7 @@ class TaleaTimespanMaker(tsmakers.TimespanMaker):
         music_specifiers=None,
         target_timespan=None,
         timespan_list=None,
-        ):
+    ):
         initial_silence_talea = self.initial_silence_talea
         if not initial_silence_talea:
             initial_silence_talea = rmakers.Talea(counts=(0,), denominator=1)
@@ -276,14 +271,14 @@ class TaleaTimespanMaker(tsmakers.TimespanMaker):
             music_specifiers=music_specifiers,
             silence_talea=silence_talea,
             target_timespan=target_timespan,
-            )
-        assert all(0 < _.duration for _ in new_timespan_list), \
-            (format(self), target_timespan)
+        )
+        assert all(0 < _.duration for _ in new_timespan_list), (
+            format(self),
+            target_timespan,
+        )
 
         if self.reflect:
-            new_timespan_list = new_timespan_list.reflect(
-                axis=target_timespan.axis,
-                )
+            new_timespan_list = new_timespan_list.reflect(axis=target_timespan.axis,)
 
         return new_timespan_list
 
@@ -296,7 +291,7 @@ class TaleaTimespanMaker(tsmakers.TimespanMaker):
         music_specifiers=None,
         silence_talea=None,
         target_timespan=None,
-        ):
+    ):
         counter = collections.Counter()
         timespan_list = abjad.TimespanList()
         start_offset = target_timespan.start_offset
@@ -318,25 +313,21 @@ class TaleaTimespanMaker(tsmakers.TimespanMaker):
                     grouping = next(playing_groupings)
                     durations = [next(playing_talea) for _ in range(grouping)]
                 maximum_offset = (
-                    start_offset +
-                    sum(durations) +
-                    silence_duration +
-                    initial_silence_duration
-                    )
-                #if self.padding:
+                    start_offset
+                    + sum(durations)
+                    + silence_duration
+                    + initial_silence_duration
+                )
+                # if self.padding:
                 #    maximum_offset += (self.padding * 2)
                 maximum_offset = min(maximum_offset, stop_offset)
                 if self.step_anchor is abjad.Left:
                     maximum_offset = min(
                         maximum_offset,
-                        (
-                            initial_silence_duration +
-                            start_offset +
-                            silence_duration
-                            ),
-                        )
+                        (initial_silence_duration + start_offset + silence_duration),
+                    )
                 current_offset = start_offset + initial_silence_duration
-                #if self.padding:
+                # if self.padding:
                 #    current_offset += self.padding
                 #    maximum_offset -= self.padding
                 group_offset = current_offset
@@ -360,11 +351,10 @@ class TaleaTimespanMaker(tsmakers.TimespanMaker):
                     start_offset=group_offset,
                     timespan_specifier=self.timespan_specifier,
                     voice_name=context_name,
-                    )
+                )
                 division_mask_seed += 1
 
-                if all(isinstance(_, tsmakers.SilentTimespan)
-                    for _ in new_timespans):
+                if all(isinstance(_, tsmakers.SilentTimespan) for _ in new_timespans):
                     new_timespans[:] = []
                 timespan_list.extend(new_timespans)
                 counter[context_name] += 1
@@ -385,7 +375,7 @@ class TaleaTimespanMaker(tsmakers.TimespanMaker):
         music_specifiers=None,
         silence_talea=None,
         target_timespan=None,
-        ):
+    ):
         counter = collections.Counter()
         timespan_list = abjad.TimespanList()
         start_offset = target_timespan.start_offset
@@ -407,16 +397,16 @@ class TaleaTimespanMaker(tsmakers.TimespanMaker):
                 silence_duration = next(silence_talea)
                 grouping = next(playing_groupings)
                 durations = [next(playing_talea) for _ in range(grouping)]
-                #if self.padding:
+                # if self.padding:
                 #    start_offset += self.padding
 
-                maximum_offset = start_offset + sum(durations) + \
-                    silence_duration
+                maximum_offset = start_offset + sum(durations) + silence_duration
                 maximum_offset = min(maximum_offset, stop_offset)
                 if self.step_anchor is abjad.Left:
-                    maximum_offset = min(maximum_offset,
-                        start_offset + silence_duration)
-                #if self.padding:
+                    maximum_offset = min(
+                        maximum_offset, start_offset + silence_duration
+                    )
+                # if self.padding:
                 #    maximum_offset -= self.padding
 
                 group_offset = current_offset = start_offset
@@ -443,10 +433,9 @@ class TaleaTimespanMaker(tsmakers.TimespanMaker):
                     start_offset=group_offset,
                     timespan_specifier=self.timespan_specifier,
                     voice_name=context_name,
-                    )
+                )
 
-                if all(isinstance(_, tsmakers.SilentTimespan)
-                    for _ in new_timespans):
+                if all(isinstance(_, tsmakers.SilentTimespan) for _ in new_timespans):
                     new_timespans = []
                 timespan_list.extend(new_timespans)
 

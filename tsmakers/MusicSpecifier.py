@@ -1,12 +1,13 @@
-import abjad
 import collections
 import os
+
+import abjad
 import tsmakers
-from abjadext import rmakers 
+from abjadext import rmakers
 
 
 class MusicSpecifier(tsmakers.HashCachingObject):
-    r'''A music specifier.
+    r"""A music specifier.
 
     ::
 
@@ -25,25 +26,25 @@ class MusicSpecifier(tsmakers.HashCachingObject):
             ...     rhythm_maker=tsmakers.CompositeRhythmMaker(),
             ...     )
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
     __is_terminal_ajv_list_item__ = True
 
     __slots__ = (
-        '_attachment_handler',
-        '_color',
-        '_comment',
-        '_grace_handler',
-        '_instrument',
-        '_labels',
-        '_minimum_phrase_duration',
-        '_pitch_handler',
-        '_register_handler',
-        '_rhythm_maker',
-        '_seed',
-        )
+        "_attachment_handler",
+        "_color",
+        "_comment",
+        "_grace_handler",
+        "_instrument",
+        "_labels",
+        "_minimum_phrase_duration",
+        "_pitch_handler",
+        "_register_handler",
+        "_rhythm_maker",
+        "_seed",
+    )
 
     ### INITIALIZER ###
 
@@ -60,8 +61,9 @@ class MusicSpecifier(tsmakers.HashCachingObject):
         register_handler=None,
         rhythm_maker=None,
         seed=None,
-        ):
+    ):
         import tsmakers
+
         HashCachingObject.__init__(self)
         if attachment_handler is not None:
             assert isinstance(attachment_handler, tsmakers.AttachmentHandler)
@@ -79,8 +81,7 @@ class MusicSpecifier(tsmakers.HashCachingObject):
             labels = tuple(str(_) for _ in labels)
         self._labels = labels
         if minimum_phrase_duration is not None:
-            minimum_phrase_duration = \
-                abjad.Duration(minimum_phrase_duration)
+            minimum_phrase_duration = abjad.Duration(minimum_phrase_duration)
             assert 0 <= minimum_phrase_duration
         self._minimum_phrase_duration = minimum_phrase_duration
         if pitch_handler is not None:
@@ -93,7 +94,7 @@ class MusicSpecifier(tsmakers.HashCachingObject):
             prototype = (
                 rmakers.RhythmMaker,
                 tsmakers.CompositeRhythmMaker,
-                )
+            )
             assert isinstance(rhythm_maker, prototype)
         self._rhythm_maker = rhythm_maker
         if seed is not None:
@@ -111,7 +112,7 @@ class MusicSpecifier(tsmakers.HashCachingObject):
         return abjad.new(self, seed=seed)
 
     def transpose(self, expr):
-        r'''Transposes music specifier.
+        r"""Transposes music specifier.
 
         ::
 
@@ -161,20 +162,17 @@ class MusicSpecifier(tsmakers.HashCachingObject):
                 )
 
         Returns new music specifier.
-        '''
+        """
         if isinstance(expr, str):
             try:
                 pitch = abjad.NamedPitch(expr)
-                expr = abjad.NamedPitch('C4') - pitch
+                expr = abjad.NamedPitch("C4") - pitch
             except:
                 expr = abjad.NamedInterval(expr)
         pitch_handler = self.pitch_handler
         if pitch_handler is not None:
             pitch_handler = pitch_handler.transpose(expr)
-        return abjad.new(
-            self,
-            pitch_handler=pitch_handler,
-            )
+        return abjad.new(self, pitch_handler=pitch_handler,)
 
     ### PUBLIC PROPERTIES ###
 

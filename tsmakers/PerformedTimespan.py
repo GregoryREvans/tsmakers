@@ -1,11 +1,8 @@
 import abjad
-from abjad import mathtools
-from abjad import system
-
 
 
 class PerformedTimespan(abjad.Timespan):
-    r'''A Performed timespan.
+    r"""A Performed timespan.
 
     ::
 
@@ -16,29 +13,29 @@ class PerformedTimespan(abjad.Timespan):
             stop_offset=Infinity,
             )
 
-    '''
+    """
 
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_forbid_fusing',
-        '_forbid_splitting',
-        '_divisions',
-        '_layer',
-        '_minimum_duration',
-        '_music',
-        '_music_specifier',
-        '_original_start_offset',
-        '_original_stop_offset',
-        '_voice_name',
-        )
+        "_forbid_fusing",
+        "_forbid_splitting",
+        "_divisions",
+        "_layer",
+        "_minimum_duration",
+        "_music",
+        "_music_specifier",
+        "_original_start_offset",
+        "_original_stop_offset",
+        "_voice_name",
+    )
 
     ### INITIALIZER ###
 
     def __init__(
         self,
-        start_offset=mathtools.NegativeInfinity(),
-        stop_offset=mathtools.Infinity(),
+        start_offset=abjad.NegativeInfinity(),
+        stop_offset=abjad.Infinity(),
         divisions=None,
         forbid_fusing=None,
         forbid_splitting=None,
@@ -49,12 +46,10 @@ class PerformedTimespan(abjad.Timespan):
         original_start_offset=None,
         original_stop_offset=None,
         voice_name=None,
-        ):
+    ):
         abjad.Timespan.__init__(
-            self,
-            start_offset=start_offset,
-            stop_offset=stop_offset,
-            )
+            self, start_offset=start_offset, stop_offset=stop_offset,
+        )
         if divisions is not None:
             divisions = tuple(abjad.Duration(_) for _ in divisions)
             assert sum(divisions) == self.duration
@@ -71,10 +66,10 @@ class PerformedTimespan(abjad.Timespan):
         if minimum_duration is not None:
             minimum_duration = abjad.Duration(minimum_duration)
         self._minimum_duration = minimum_duration
-        #if music is not None:
+        # if music is not None:
         #    assert inspect(music).get_duration() == self.duration
         self._music = music
-        #if music_specifier is not None:
+        # if music_specifier is not None:
         #    assert isinstance(music_specifier, tsmakers.MusicSpecifier), \
         #        music_specifier
         self._music_specifier = music_specifier
@@ -96,21 +91,18 @@ class PerformedTimespan(abjad.Timespan):
         if abjad.Timespan.__lt__(self, expr):
             return True
         if not abjad.Timespan.__gt__(self, expr):
-            if hasattr(expr, 'voice_name'):
+            if hasattr(expr, "voice_name"):
                 return self.voice_name < expr.voice_name
         return False
 
     ### PRIVATE METHODS ###
 
     def _as_postscript(
-        self,
-        postscript_x_offset,
-        postscript_y_offset,
-        postscript_scale,
-        ):
-        start = (float(self.start_offset) * postscript_scale)
+        self, postscript_x_offset, postscript_y_offset, postscript_scale,
+    ):
+        start = float(self.start_offset) * postscript_scale
         start -= postscript_x_offset
-        stop = (float(self.stop_offset) * postscript_scale)
+        stop = float(self.stop_offset) * postscript_scale
         stop -= postscript_x_offset
         ps = abjad.Postscript()
         ps = ps.moveto(start, postscript_y_offset)
@@ -129,15 +121,13 @@ class PerformedTimespan(abjad.Timespan):
         return ps
 
     def _get_format_specification(self):
-        agent = system.StorageFormatManager(self)
+        agent = abjad.StorageFormatManager(self)
         names = agent.signature_keyword_names
         if self.original_start_offset == self.start_offset:
-            names.remove('original_start_offset')
+            names.remove("original_start_offset")
         if self.original_stop_offset == self.stop_offset:
-            names.remove('original_stop_offset')
-        return system.FormatSpecification(
-            storage_format_kwargs_names=names,
-            )
+            names.remove("original_stop_offset")
+        return abjad.FormatSpecification(storage_format_kwargs_names=names,)
 
     ### PUBLIC METHODS ###
 
@@ -148,22 +138,20 @@ class PerformedTimespan(abjad.Timespan):
             left_divisions, right_divisions = None, None
             if self.divisions is not None:
                 left_divisions, right_divisions = abjad.split_sequence(
-                    self.divisions,
-                    [offset - self.start_offset],
-                    overhang=True,
-                    )
+                    self.divisions, [offset - self.start_offset], overhang=True,
+                )
             left = abjad.new(
                 self,
                 start_offset=self._start_offset,
                 stop_offset=offset,
                 divisions=left_divisions,
-                )
+            )
             right = abjad.new(
                 self,
                 start_offset=offset,
                 stop_offset=self._stop_offset,
                 divisions=right_divisions,
-                )
+            )
             if left.duration:
                 result.append(left)
             if right.duration:
