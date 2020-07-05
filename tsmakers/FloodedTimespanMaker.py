@@ -1,8 +1,9 @@
 import abjad
 import tsmakers
+from .TimespanMaker import TimespanMaker
 
 
-class FloodedTimespanMaker(tsmakers.TimespanMaker):
+class FloodedTimespanMaker(TimespanMaker):
     r"""A flooded timespan maker.
 
     ::
@@ -88,7 +89,7 @@ class FloodedTimespanMaker(tsmakers.TimespanMaker):
     def __init__(
         self, division_masks=None, padding=None, seed=None, timespan_specifier=None,
     ):
-        tsmakers.TimespanMaker.__init__(
+        TimespanMaker.__init__(
             self,
             division_masks=division_masks,
             padding=padding,

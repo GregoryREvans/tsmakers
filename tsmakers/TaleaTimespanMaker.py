@@ -2,10 +2,11 @@ import collections
 
 import abjad
 import tsmakers
+from .TimespanMaker import TimespanMaker
 from abjadext import rmakers
 
 
-class TaleaTimespanMaker(tsmakers.TimespanMaker):
+class TaleaTimespanMaker(TimespanMaker):
     r"""A talea timespan maker.
 
     ::
@@ -185,7 +186,7 @@ class TaleaTimespanMaker(tsmakers.TimespanMaker):
         synchronize_step=False,
         timespan_specifier=None,
     ):
-        tsmakers.TimespanMaker.__init__(
+        TimespanMaker.__init__(
             self,
             division_masks=division_masks,
             padding=padding,

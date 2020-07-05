@@ -2,10 +2,11 @@ import collections
 
 import abjad
 import tsmakers
+from .TimespanMaker import TimespanMaker
 from abjadext import rmakers
 
 
-class BoundaryTimespanMaker(tsmakers.TimespanMaker):
+class BoundaryTimespanMaker(TimespanMaker):
     r"""A boundary timespan-maker.
 
     ::
@@ -138,7 +139,7 @@ class BoundaryTimespanMaker(tsmakers.TimespanMaker):
         timespan_specifier=None,
         voice_names=None,
     ):
-        tsmakers.TimespanMaker.__init__(
+        TimespanMaker.__init__(
             self,
             division_masks=division_masks,
             padding=padding,

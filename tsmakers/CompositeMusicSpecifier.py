@@ -2,9 +2,10 @@ import collections
 
 import abjad
 import tsmakers
+from .HashCachingObject import HashCachingObject
 
 
-class CompositeMusicSpecifier(tsmakers.HashCachingObject):
+class CompositeMusicSpecifier(HashCachingObject):
     r"""A composite music specifier.
 
     ::
@@ -207,7 +208,7 @@ class CompositeMusicSpecifier(tsmakers.HashCachingObject):
         secondary_music_specifier=None,
         secondary_voice_name=None,
     ):
-        tsmakers.HashCachingObject.__init__(self)
+        HashCachingObject.__init__(self)
         prototype = tsmakers.MusicSpecifierSequence
         if discard_inner_offsets is not None:
             discard_inner_offsets = bool(discard_inner_offsets)

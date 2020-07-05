@@ -5,7 +5,7 @@ import abjad
 import tsmakers
 
 
-class TimespanMaker:
+class TimespanMaker(object):
     r"""Abstract base class for timespan makers.
     """
 

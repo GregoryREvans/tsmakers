@@ -2,10 +2,11 @@ import collections
 
 import abjad
 import tsmakers
+from .TimespanMaker import TimespanMaker
 from abjadext import rmakers
 
 
-class CascadingTimespanMaker(tsmakers.TimespanMaker):
+class CascadingTimespanMaker(TimespanMaker):
     """
     A cascading timespan maker.
 
@@ -176,7 +177,7 @@ class CascadingTimespanMaker(tsmakers.TimespanMaker):
         silence_talea=rmakers.Talea(counts=[4], denominator=16,),
         timespan_specifier=None,
     ):
-        tsmakers.TimespanMaker.__init__(
+        TimespanMaker.__init__(
             self,
             division_masks=division_masks,
             padding=padding,

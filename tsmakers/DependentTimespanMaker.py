@@ -2,10 +2,11 @@ import collections
 
 import abjad
 import tsmakers
+from .TimespanMaker import TimespanMaker
 from abjad import mathtools
 
 
-class DependentTimespanMaker(tsmakers.TimespanMaker):
+class DependentTimespanMaker(TimespanMaker):
     r"""A dependent timespan-maker.
 
     ::
@@ -127,7 +128,7 @@ class DependentTimespanMaker(tsmakers.TimespanMaker):
         timespan_specifier=None,
         voice_names=None,
     ):
-        tsmakers.TimespanMaker.__init__(
+        TimespanMaker.__init__(
             self,
             division_masks=division_masks,
             padding=padding,
