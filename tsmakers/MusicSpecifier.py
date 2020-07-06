@@ -165,7 +165,7 @@ class MusicSpecifier(HashCachingObject):
             try:
                 pitch = abjad.NamedPitch(expr)
                 expr = abjad.NamedPitch("C4") - pitch
-            except:
+            except Exception:
                 expr = abjad.NamedInterval(expr)
         pitch_handler = self.pitch_handler
         if pitch_handler is not None:
