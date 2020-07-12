@@ -1,9 +1,10 @@
 import collections
 
 import abjad
-import tsmakers
 from abjadext import rmakers
 
+from .Cursor import Cursor
+from .SilentTimespan import SilentTimespan
 from .TimespanMaker import TimespanMaker
 
 
@@ -246,13 +247,13 @@ class TaleaTimespanMaker(TimespanMaker):
         initial_silence_talea = self.initial_silence_talea
         if not initial_silence_talea:
             initial_silence_talea = rmakers.Talea(counts=(0,), denominator=1)
-        initial_silence_talea = tsmakers.Cursor(initial_silence_talea)
-        playing_talea = tsmakers.Cursor(self.playing_talea)
-        playing_groupings = tsmakers.Cursor(self.playing_groupings)
+        initial_silence_talea = Cursor(initial_silence_talea)
+        playing_talea = Cursor(self.playing_talea)
+        playing_groupings = Cursor(self.playing_groupings)
         silence_talea = self.silence_talea
         if silence_talea is None:
             silence_talea = rmakers.Talea(counts=(0,), denominator=1)
-        silence_talea = tsmakers.Cursor(silence_talea)
+        silence_talea = Cursor(silence_talea)
 
         if self.seed is not None and 0 < self.seed:
             for _ in range(self.seed):
@@ -356,7 +357,7 @@ class TaleaTimespanMaker(TimespanMaker):
                 )
                 division_mask_seed += 1
 
-                if all(isinstance(_, tsmakers.SilentTimespan) for _ in new_timespans):
+                if all(isinstance(_, SilentTimespan) for _ in new_timespans):
                     new_timespans[:] = []
                 timespan_list.extend(new_timespans)
                 counter[context_name] += 1
@@ -437,7 +438,7 @@ class TaleaTimespanMaker(TimespanMaker):
                     voice_name=context_name,
                 )
 
-                if all(isinstance(_, tsmakers.SilentTimespan) for _ in new_timespans):
+                if all(isinstance(_, SilentTimespan) for _ in new_timespans):
                     new_timespans = []
                 timespan_list.extend(new_timespans)
 

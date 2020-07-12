@@ -1,5 +1,4 @@
 import abjad
-from abjad import mathtools
 
 
 class SilentTimespan(abjad.Timespan):
@@ -17,8 +16,8 @@ class SilentTimespan(abjad.Timespan):
 
     def __init__(
         self,
-        start_offset=mathtools.NegativeInfinity(),
-        stop_offset=mathtools.Infinity(),
+        start_offset=abjad.NegativeInfinity(),
+        stop_offset=abjad.Infinity(),
         layer=None,
         voice_name=None,
     ):

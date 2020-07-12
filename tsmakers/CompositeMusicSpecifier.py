@@ -1,9 +1,9 @@
 import collections
 
 import abjad
-import tsmakers
 
 from .HashCachingObject import HashCachingObject
+from .MusicSpecifierSequence import MusicSpecifierSequence
 
 
 class CompositeMusicSpecifier(HashCachingObject):
@@ -210,12 +210,12 @@ class CompositeMusicSpecifier(HashCachingObject):
         secondary_voice_name=None,
     ):
         HashCachingObject.__init__(self)
-        prototype = tsmakers.MusicSpecifierSequence
+        prototype = MusicSpecifierSequence
         if discard_inner_offsets is not None:
             discard_inner_offsets = bool(discard_inner_offsets)
         self._discard_inner_offsets = discard_inner_offsets
         if not isinstance(primary_music_specifier, prototype):
-            primary_music_specifier = tsmakers.MusicSpecifierSequence(
+            primary_music_specifier = MusicSpecifierSequence(
                 music_specifiers=primary_music_specifier,
             )
         self._primary_music_specifier = primary_music_specifier
@@ -229,7 +229,7 @@ class CompositeMusicSpecifier(HashCachingObject):
             rotation_indices = tuple(rotation_indices)
         self._rotation_indices = rotation_indices
         if not isinstance(secondary_music_specifier, prototype):
-            secondary_music_specifier = tsmakers.MusicSpecifierSequence(
+            secondary_music_specifier = MusicSpecifierSequence(
                 music_specifiers=secondary_music_specifier,
             )
         self._secondary_music_specifier = secondary_music_specifier

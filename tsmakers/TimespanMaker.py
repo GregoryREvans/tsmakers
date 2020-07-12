@@ -2,10 +2,12 @@ import abc
 import collections
 
 import abjad
-import tsmakers
 
+from .CompositeMusicSpecifier import CompositeMusicSpecifier
+from .MusicSpecifierSequence import MusicSpecifierSequence
 from .PerformedTimespan import PerformedTimespan
 from .SilentTimespan import SilentTimespan
+from .TimespanSpecifier import TimespanSpecifier
 
 
 class TimespanMaker(object):
@@ -39,7 +41,7 @@ class TimespanMaker(object):
             seed = int(seed)
         self._seed = seed
         if timespan_specifier is not None:
-            assert isinstance(timespan_specifier, tsmakers.TimespanSpecifier)
+            assert isinstance(timespan_specifier, TimespanSpecifier)
         self._timespan_specifier = timespan_specifier
 
     ### SPECIAL METHODS ###
@@ -142,14 +144,14 @@ class TimespanMaker(object):
         # from MusicSpecifierSequence import MusicSpecifierSequence
         result = collections.OrderedDict()
         prototype = (
-            tsmakers.MusicSpecifierSequence,
-            tsmakers.CompositeMusicSpecifier,
+            MusicSpecifierSequence,
+            CompositeMusicSpecifier,
         )
         for context_name, music_specifier in music_specifiers.items():
             if music_specifier is None:
                 music_specifier = [None]
             if not isinstance(music_specifier, prototype):
-                music_specifier = tsmakers.MusicSpecifierSequence(
+                music_specifier = MusicSpecifierSequence(
                     music_specifiers=music_specifier,
                 )
             result[context_name] = music_specifier

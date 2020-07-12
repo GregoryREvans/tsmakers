@@ -1,9 +1,10 @@
 import collections
 
 import abjad
-import tsmakers
 from abjadext import rmakers
 
+from .Cursor import Cursor
+from .SilentTimespan import SilentTimespan
 from .TimespanMaker import TimespanMaker
 
 
@@ -242,9 +243,9 @@ class CascadingTimespanMaker(TimespanMaker):
         context_names = abjad.CyclicTuple(music_specifiers)
         context_index = self.seed or 0
         cascade_pattern = self.cascade_pattern
-        playing_talea = tsmakers.Cursor(self.playing_talea)
-        playing_groupings = tsmakers.Cursor(self.playing_groupings)
-        silence_talea = tsmakers.Cursor(self.silence_talea)
+        playing_talea = Cursor(self.playing_talea)
+        playing_groupings = Cursor(self.playing_groupings)
+        silence_talea = Cursor(self.silence_talea)
         if self.seed is not None and 0 < self.seed:
             for _ in range(self.seed):
                 next(playing_talea)
@@ -283,7 +284,7 @@ class CascadingTimespanMaker(TimespanMaker):
                     timespan_specifier=self.timespan_specifier,
                     voice_name=context_name,
                 )
-                if all(isinstance(_, tsmakers.SilentTimespan) for _ in new_timespans):
+                if all(isinstance(_, SilentTimespan) for _ in new_timespans):
                     new_timespans[:] = []
                 if context_name not in new_timespan_mapping:
                     new_timespan_mapping[context_name] = abjad.TimespanList()

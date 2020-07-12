@@ -1,9 +1,11 @@
 import collections
 
 import abjad
-import tsmakers
 from abjadext import rmakers
 
+from .Cursor import Cursor
+from .PerformedTimespan import PerformedTimespan
+from .SilentTimespan import SilentTimespan
 from .TimespanMaker import TimespanMaker
 
 
@@ -209,10 +211,8 @@ class BoundaryTimespanMaker(TimespanMaker):
 
         preexisting_timespans = abjad.TimespanList()
         for timespan in timespan_list:
-            assert isinstance(
-                timespan, (tsmakers.PerformedTimespan, tsmakers.SilentTimespan,)
-            )
-            if isinstance(timespan, tsmakers.SilentTimespan):
+            assert isinstance(timespan, (PerformedTimespan, SilentTimespan,))
+            if isinstance(timespan, SilentTimespan):
                 continue
             if self.voice_names and timespan.voice_name not in self.voice_names:
                 continue
@@ -244,22 +244,22 @@ class BoundaryTimespanMaker(TimespanMaker):
         start_talea = self.start_talea
         if start_talea is None:
             start_talea = rmakers.Talea((0,), 1)
-        start_talea = tsmakers.Cursor(start_talea)
+        start_talea = Cursor(start_talea)
 
         start_groupings = self.start_groupings
         if start_groupings is None:
             start_groupings = (1,)
-        start_groupings = tsmakers.Cursor(start_groupings)
+        start_groupings = Cursor(start_groupings)
 
         stop_talea = self.stop_talea
         if stop_talea is None:
             stop_talea = rmakers.Talea((0,), 1)
-        stop_talea = tsmakers.Cursor(stop_talea)
+        stop_talea = Cursor(stop_talea)
 
         stop_groupings = self.stop_groupings
         if stop_groupings is None:
             stop_groupings = (1,)
-        stop_groupings = tsmakers.Cursor(stop_groupings)
+        stop_groupings = Cursor(stop_groupings)
 
         if self.seed:
             if self.seed < 0:
