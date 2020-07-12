@@ -15,18 +15,18 @@ class CascadingTimespanMaker(TimespanMaker):
     ::
 
         >>> timespan_maker = tsmakers.CascadingTimespanMaker()
-        >>> print(format(timespan_maker))
+        >>> abjad.f(timespan_maker)
         tsmakers.CascadingTimespanMaker(
             cascade_pattern=(1,),
-            playing_talea=rmakers.Talea(
-                counts=[4],
-                denominator=16,
+            playing_talea=abjadext.specifiers.Talea(
+                [4],
+                16
                 ),
             playing_groupings=(1,),
             repeat=True,
-            silence_talea=rmakers.Talea(
-                counts=[4],
-                denominator=16,
+            silence_talea=abjadext.specifiers.Talea(
+                [4],
+                16
                 ),
             )
 
@@ -44,47 +44,47 @@ class CascadingTimespanMaker(TimespanMaker):
         ...     music_specifiers=music_specifiers,
         ...     target_timespan=target_timespan,
         ...     )
-        >>> print(format(timespan_list))
+        >>> abjad.f(timespan_list)
         abjad.TimespanList(
             [
                 tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset(0, 1),
-                    stop_offset=abjad.Offset(1, 4),
+                    start_offset=abjad.Offset((0, 1)),
+                    stop_offset=abjad.Offset((1, 4)),
                     voice_name='A',
                     ),
                 tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset(1, 4),
-                    stop_offset=abjad.Offset(1, 2),
+                    start_offset=abjad.Offset((1, 4)),
+                    stop_offset=abjad.Offset((1, 2)),
                     voice_name='B',
                     ),
                 tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset(1, 2),
-                    stop_offset=abjad.Offset(3, 4),
+                    start_offset=abjad.Offset((1, 2)),
+                    stop_offset=abjad.Offset((3, 4)),
                     voice_name='C',
                     ),
                 tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset(3, 4),
-                    stop_offset=abjad.Offset(1, 1),
+                    start_offset=abjad.Offset((3, 4)),
+                    stop_offset=abjad.Offset((1, 1)),
                     voice_name='D',
                     ),
                 tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset(1, 1),
-                    stop_offset=abjad.Offset(5, 4),
+                    start_offset=abjad.Offset((1, 1)),
+                    stop_offset=abjad.Offset((5, 4)),
                     voice_name='A',
                     ),
                 tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset(5, 4),
-                    stop_offset=abjad.Offset(3, 2),
+                    start_offset=abjad.Offset((5, 4)),
+                    stop_offset=abjad.Offset((3, 2)),
                     voice_name='B',
                     ),
                 tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset(3, 2),
-                    stop_offset=abjad.Offset(7, 4),
+                    start_offset=abjad.Offset((3, 2)),
+                    stop_offset=abjad.Offset((7, 4)),
                     voice_name='C',
                     ),
                 tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset(7, 4),
-                    stop_offset=abjad.Offset(2, 1),
+                    start_offset=abjad.Offset((7, 4)),
+                    stop_offset=abjad.Offset((2, 1)),
                     voice_name='D',
                     ),
                 ]
@@ -101,55 +101,54 @@ class CascadingTimespanMaker(TimespanMaker):
         ...     music_specifiers=music_specifiers,
         ...     target_timespan=target_timespan,
         ...     )
-        >>> print(format(timespan_list))
+        >>> abjad.f(timespan_list)
         abjad.TimespanList(
             [
                 tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset(0, 1),
-                    stop_offset=abjad.Offset(1, 4),
+                    start_offset=abjad.Offset((0, 1)),
+                    stop_offset=abjad.Offset((1, 4)),
                     voice_name='A',
                     ),
                 tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset(1, 4),
-                    stop_offset=abjad.Offset(3, 4),
-                    original_stop_offset=abjad.Offset(1, 2),
+                    start_offset=abjad.Offset((1, 4)),
+                    stop_offset=abjad.Offset((3, 4)),
+                    original_stop_offset=abjad.Offset((1, 2)),
                     voice_name='C',
                     ),
                 tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset(1, 2),
-                    stop_offset=abjad.Offset(3, 4),
+                    start_offset=abjad.Offset((1, 2)),
+                    stop_offset=abjad.Offset((3, 4)),
                     voice_name='B',
                     ),
                 tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset(3, 4),
-                    stop_offset=abjad.Offset(5, 4),
-                    original_stop_offset=abjad.Offset(1, 1),
+                    start_offset=abjad.Offset((3, 4)),
+                    stop_offset=abjad.Offset((5, 4)),
+                    original_stop_offset=abjad.Offset((1, 1)),
                     voice_name='D',
                     ),
                 tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset(1, 1),
-                    stop_offset=abjad.Offset(5, 4),
+                    start_offset=abjad.Offset((1, 1)),
+                    stop_offset=abjad.Offset((5, 4)),
                     voice_name='C',
                     ),
                 tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset(5, 4),
-                    stop_offset=abjad.Offset(7, 4),
-                    original_stop_offset=abjad.Offset(3, 2),
+                    start_offset=abjad.Offset((5, 4)),
+                    stop_offset=abjad.Offset((7, 4)),
+                    original_stop_offset=abjad.Offset((3, 2)),
                     voice_name='A',
                     ),
                 tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset(3, 2),
-                    stop_offset=abjad.Offset(7, 4),
+                    start_offset=abjad.Offset((3, 2)),
+                    stop_offset=abjad.Offset((7, 4)),
                     voice_name='D',
                     ),
                 tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset(7, 4),
-                    stop_offset=abjad.Offset(2, 1),
+                    start_offset=abjad.Offset((7, 4)),
+                    stop_offset=abjad.Offset((2, 1)),
                     voice_name='B',
                     ),
                 ]
             )
-
 
     """
 

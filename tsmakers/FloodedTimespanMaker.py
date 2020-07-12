@@ -23,18 +23,18 @@ class FloodedTimespanMaker(TimespanMaker):
         ...     music_specifiers=music_specifiers,
         ...     target_timespan=target_timespan,
         ...     )
-        >>> print(format(timespan_list))
+        >>> abjad.f(timespan_list)
         abjad.TimespanList(
             [
                 tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset(1, 2),
-                    stop_offset=abjad.Offset(2, 1),
+                    start_offset=abjad.Offset((1, 2)),
+                    stop_offset=abjad.Offset((2, 1)),
                     music_specifier='cello music',
                     voice_name='Cello Voice',
                     ),
                 tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset(1, 2),
-                    stop_offset=abjad.Offset(2, 1),
+                    start_offset=abjad.Offset((1, 2)),
+                    stop_offset=abjad.Offset((2, 1)),
                     music_specifier='violin music',
                     voice_name='Violin Voice',
                     ),
@@ -60,18 +60,18 @@ class FloodedTimespanMaker(TimespanMaker):
         ...     music_specifiers=music_specifiers,
         ...     target_timespan=target_timespan,
         ...     )
-        >>> print(format(timespan_list))
+        >>> abjad.f(timespan_list)
         abjad.TimespanList(
             [
                 tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset(1, 2),
-                    stop_offset=abjad.Offset(2, 1),
+                    start_offset=abjad.Offset((1, 2)),
+                    stop_offset=abjad.Offset((2, 1)),
                     music_specifier='two',
                     voice_name='Viola 1 LH',
                     ),
                 tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset(1, 2),
-                    stop_offset=abjad.Offset(2, 1),
+                    start_offset=abjad.Offset((1, 2)),
+                    stop_offset=abjad.Offset((2, 1)),
                     music_specifier='one',
                     voice_name='Viola 1 RH',
                     ),

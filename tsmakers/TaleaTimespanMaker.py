@@ -20,22 +20,22 @@ class TaleaTimespanMaker(TimespanMaker):
         ...         )
         ...     )
         >>> print(format(timespan_maker))
-        tsmakers.tools.TaleaTimespanMaker(
-            initial_silence_talea=rmakers.Talea(
-                counts=[0, 4],
-                denominator=16,
+        tsmakers.TaleaTimespanMaker(
+            initial_silence_talea=abjadext.specifiers.Talea(
+                [0, 4],
+                16
                 ),
-            playing_talea=rmakers.Talea(
-                counts=[4],
-                denominator=16,
+            playing_talea=abjadext.specifiers.Talea(
+                [4],
+                16
                 ),
             playing_groupings=(1,),
             repeat=True,
-            silence_talea=rmakers.Talea(
-                counts=[4],
-                denominator=16,
+            silence_talea=abjadext.specifiers.Talea(
+                [4],
+                16
                 ),
-            step_anchor=abjad.Right,
+            step_anchor=Right,
             synchronize_groupings=False,
             synchronize_step=False,
             )
@@ -52,27 +52,27 @@ class TaleaTimespanMaker(TimespanMaker):
         ...     music_specifiers=music_specifiers,
         ...     target_timespan=target_timespan,
         ...     )
-        >>> print(format(timespan_list))
+        >>> abjad.f(timespan_list)
         abjad.TimespanList(
             [
                 tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset(0, 1),
-                    stop_offset=abjad.Offset(1, 4),
+                    start_offset=abjad.Offset((0, 1)),
+                    stop_offset=abjad.Offset((1, 4)),
                     voice_name='Violin',
                     ),
                 tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset(1, 4),
-                    stop_offset=abjad.Offset(1, 2),
+                    start_offset=abjad.Offset((1, 4)),
+                    stop_offset=abjad.Offset((1, 2)),
                     voice_name='Viola',
                     ),
                 tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset(1, 2),
-                    stop_offset=abjad.Offset(3, 4),
+                    start_offset=abjad.Offset((1, 2)),
+                    stop_offset=abjad.Offset((3, 4)),
                     voice_name='Violin',
                     ),
                 tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset(3, 4),
-                    stop_offset=abjad.Offset(1, 1),
+                    start_offset=abjad.Offset((3, 4)),
+                    stop_offset=abjad.Offset((1, 1)),
                     voice_name='Viola',
                     ),
                 ]
@@ -88,27 +88,27 @@ class TaleaTimespanMaker(TimespanMaker):
         ...     music_specifiers=music_specifiers,
         ...     target_timespan=target_timespan,
         ...     )
-        >>> print(format(timespan_list))
+        >>> abjad.f(timespan_list)
         abjad.TimespanList(
             [
                 tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset(0, 1),
-                    stop_offset=abjad.Offset(1, 4),
+                    start_offset=abjad.Offset((0, 1)),
+                    stop_offset=abjad.Offset((1, 4)),
                     voice_name='Viola',
                     ),
                 tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset(0, 1),
-                    stop_offset=abjad.Offset(1, 4),
+                    start_offset=abjad.Offset((0, 1)),
+                    stop_offset=abjad.Offset((1, 4)),
                     voice_name='Violin',
                     ),
                 tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset(1, 2),
-                    stop_offset=abjad.Offset(3, 4),
+                    start_offset=abjad.Offset((1, 2)),
+                    stop_offset=abjad.Offset((3, 4)),
                     voice_name='Viola',
                     ),
                 tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset(1, 2),
-                    stop_offset=abjad.Offset(3, 4),
+                    start_offset=abjad.Offset((1, 2)),
+                    stop_offset=abjad.Offset((3, 4)),
                     voice_name='Violin',
                     ),
                 ]
@@ -126,27 +126,27 @@ class TaleaTimespanMaker(TimespanMaker):
         ...     music_specifiers=music_specifiers,
         ...     target_timespan=target_timespan,
         ...     )
-        >>> print(format(timespan_list))
+        >>> abjad.f(timespan_list)
         abjad.TimespanList(
             [
                 tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset(0, 1),
-                    stop_offset=abjad.Offset(1, 4),
+                    start_offset=abjad.Offset((0, 1)),
+                    stop_offset=abjad.Offset((1, 4)),
                     voice_name='Violin',
                     ),
                 tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset(1, 8),
-                    stop_offset=abjad.Offset(3, 8),
+                    start_offset=abjad.Offset((1, 8)),
+                    stop_offset=abjad.Offset((3, 8)),
                     voice_name='Viola',
                     ),
                 tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset(5, 8),
-                    stop_offset=abjad.Offset(7, 8),
+                    start_offset=abjad.Offset((5, 8)),
+                    stop_offset=abjad.Offset((7, 8)),
                     voice_name='Violin',
                     ),
                 tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset(3, 4),
-                    stop_offset=abjad.Offset(1, 1),
+                    start_offset=abjad.Offset((3, 4)),
+                    stop_offset=abjad.Offset((1, 1)),
                     voice_name='Viola',
                     ),
                 ]

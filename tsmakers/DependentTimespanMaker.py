@@ -52,47 +52,47 @@ class DependentTimespanMaker(TimespanMaker):
         ...     target_timespan=target_timespan,
         ...     timespan_list=timespan_list,
         ...     )
-        >>> print(format(timespan_list))
+        >>> abjad.f(timespan_list)
         abjad.TimespanList(
             [
                 tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset(1, 4),
-                    stop_offset=abjad.Offset(1, 1),
+                    start_offset=abjad.Offset((1, 4)),
+                    stop_offset=abjad.Offset((1, 1)),
                     voice_name='Viola Voice',
                     ),
                 tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset(1, 2),
-                    stop_offset=abjad.Offset(3, 4),
+                    start_offset=abjad.Offset((1, 2)),
+                    stop_offset=abjad.Offset((3, 4)),
                     voice_name='Cello Voice',
                     ),
                 tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset(1, 2),
-                    stop_offset=abjad.Offset(3, 4),
+                    start_offset=abjad.Offset((1, 2)),
+                    stop_offset=abjad.Offset((3, 4)),
                     voice_name='Violin Voice',
                     ),
                 tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset(3, 4),
-                    stop_offset=abjad.Offset(1, 1),
+                    start_offset=abjad.Offset((3, 4)),
+                    stop_offset=abjad.Offset((1, 1)),
                     voice_name='Cello Voice',
                     ),
                 tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset(3, 4),
-                    stop_offset=abjad.Offset(1, 1),
+                    start_offset=abjad.Offset((3, 4)),
+                    stop_offset=abjad.Offset((1, 1)),
                     voice_name='Violin Voice',
                     ),
                 tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset(3, 4),
-                    stop_offset=abjad.Offset(3, 2),
+                    start_offset=abjad.Offset((3, 4)),
+                    stop_offset=abjad.Offset((3, 2)),
                     voice_name='Viola Voice',
                     ),
                 tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset(1, 1),
-                    stop_offset=abjad.Offset(3, 2),
+                    start_offset=abjad.Offset((1, 1)),
+                    stop_offset=abjad.Offset((3, 2)),
                     voice_name='Cello Voice',
                     ),
                 tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset(1, 1),
-                    stop_offset=abjad.Offset(3, 2),
+                    start_offset=abjad.Offset((1, 1)),
+                    stop_offset=abjad.Offset((3, 2)),
                     voice_name='Violin Voice',
                     ),
                 ]
@@ -246,7 +246,7 @@ class DependentTimespanMaker(TimespanMaker):
                 if self.include_inner_stops:
                     offsets.add(timespan.stop_offset)
             offsets = tuple(sorted(offsets))
-            durations = abjad.Sequence(abjad.difference_series(offsets))
+            durations = abjad.Sequence(abjad.mathtools.difference_series(offsets))
             durations = durations.rotate(rotation_index)
             start_offset = offsets[0]
             for context_name, music_specifier in music_specifiers.items():

@@ -7,7 +7,7 @@ class PerformedTimespan(abjad.Timespan):
     ::
 
         >>> timespan = tsmakers.PerformedTimespan()
-        >>> print(format(timespan))
+        >>> abjad.f(timespan)
         tsmakers.PerformedTimespan(
             start_offset=NegativeInfinity,
             stop_offset=Infinity,

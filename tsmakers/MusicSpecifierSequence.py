@@ -13,7 +13,7 @@ class MusicSpecifierSequence(object):
         >>> sequence_a = tsmakers.MusicSpecifierSequence(
         ...     music_specifiers='music',
         ...     )
-        >>> print(format(sequence_a))
+        >>> abjad.f(sequence_a)
         tsmakers.MusicSpecifierSequence(
             music_specifiers=('music',),
             )
@@ -24,7 +24,7 @@ class MusicSpecifierSequence(object):
         ...     application_rate='phrase',
         ...     music_specifiers=['one', 'two', 'three'],
         ...     )
-        >>> print(format(sequence_b))
+        >>> abjad.f(sequence_b)
         tsmakers.MusicSpecifierSequence(
             application_rate='phrase',
             music_specifiers=('one', 'two', 'three'),

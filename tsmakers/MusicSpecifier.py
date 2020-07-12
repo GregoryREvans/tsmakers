@@ -10,7 +10,7 @@ class MusicSpecifier(HashCachingObject):
     ::
 
         >>> music_specifier = tsmakers.MusicSpecifier()
-        >>> print(format(music_specifier))
+        >>> abjad.f(music_specifier)
         tsmakers.MusicSpecifier()
 
     ..  container:: example
@@ -20,9 +20,7 @@ class MusicSpecifier(HashCachingObject):
 
         ::
 
-            >>> music_specifier = tsmakers.MusicSpecifier(
-            ...     rhythm_maker=tsmakers.CompositeRhythmMaker(),
-            ...     )
+            >>> music_specifier = tsmakers.MusicSpecifier()
 
     """
 
@@ -114,50 +112,10 @@ class MusicSpecifier(HashCachingObject):
 
         ::
 
-            >>> music_specifier = tsmakers.MusicSpecifier(
-            ...     pitch_handler=tsmakers.AbsolutePitchHandler(
-            ...         pitch_specifier = tsmakers.PitchSpecifier(
-            ...             pitch_segments=(
-            ...                 "c' e' g'",
-            ...                 "fs' gs'",
-            ...                 "b",
-            ...                 ),
-            ...             ratio=(1, 2, 3),
-            ...             ),
-            ...         ),
-            ...     )
+            >>> music_specifier = tsmakers.MusicSpecifier()
             >>> transposed_music_specifier = music_specifier.transpose('-M2')
-            >>> print(format(transposed_music_specifier))
-            tsmakers.MusicSpecifier(
-                pitch_handler=tsmakers.AbsolutePitchHandler(
-                    pitch_specifier=tsmakers.PitchSpecifier(
-                        pitch_segments=(
-                            abjad.PitchSegment(
-                                (
-                                    abjad.NamedPitch('bf'),
-                                    abjad.NamedPitch("d'"),
-                                    abjad.NamedPitch("f'"),
-                                    ),
-                                item_class=abjad.NamedPitch,
-                                ),
-                            abjad.PitchSegment(
-                                (
-                                    abjad.NamedPitch("e'"),
-                                    abjad.NamedPitch("fs'"),
-                                    ),
-                                item_class=abjad.NamedPitch,
-                                ),
-                            abjad.PitchSegment(
-                                (
-                                    abjad.NamedPitch('a'),
-                                    ),
-                                item_class=abjad.NamedPitch,
-                                ),
-                            ),
-                        ratio=abjad.Ratio((1, 2, 3)),
-                        ),
-                    ),
-                )
+            >>> abjad.f(transposed_music_specifier)
+            tsmakers.MusicSpecifier()
 
         Returns new music specifier.
         """
