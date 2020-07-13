@@ -78,7 +78,7 @@ class MusicSpecifierSequence(object):
         seed = seed or 0
         division_mask_seed = division_mask_seed or 0
         durations = [_ for _ in durations if _]
-        offsets = abjad.mathtools.cumulative_sums(durations, start_offset)
+        offsets = abjad.mathx.cumulative_sums(durations, start_offset)
         if not offsets:
             return timespans
         offset_pair_count = len(offsets) - 1
