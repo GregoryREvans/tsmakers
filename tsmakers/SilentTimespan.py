@@ -10,6 +10,7 @@ class SilentTimespan(abjad.Timespan):
     __slots__ = (
         "_layer",
         "_voice_name",
+        "_handler",
     )
 
     ### INITIALIZER ###
@@ -20,6 +21,7 @@ class SilentTimespan(abjad.Timespan):
         stop_offset=abjad.Infinity(),
         layer=None,
         voice_name=None,
+        handler=None,
     ):
         abjad.Timespan.__init__(
             self, start_offset=start_offset, stop_offset=stop_offset,
@@ -28,6 +30,7 @@ class SilentTimespan(abjad.Timespan):
             layer = int(layer)
         self._layer = layer
         self._voice_name = voice_name
+        self._handler = handler
 
     ### PRIVATE METHODS ###
 
@@ -87,3 +90,7 @@ class SilentTimespan(abjad.Timespan):
     @property
     def voice_name(self):
         return self._voice_name
+
+    @property
+    def handler(self):
+        return self._handler

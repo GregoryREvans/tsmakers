@@ -28,6 +28,7 @@ class PerformedTimespan(abjad.Timespan):
         "_original_start_offset",
         "_original_stop_offset",
         "_voice_name",
+        "_handler",
     )
 
     ### INITIALIZER ###
@@ -46,6 +47,7 @@ class PerformedTimespan(abjad.Timespan):
         original_start_offset=None,
         original_stop_offset=None,
         voice_name=None,
+        handler=None,
     ):
         abjad.Timespan.__init__(
             self, start_offset=start_offset, stop_offset=stop_offset,
@@ -84,6 +86,7 @@ class PerformedTimespan(abjad.Timespan):
             original_stop_offset = self.stop_offset
         self._original_stop_offset = original_stop_offset
         self._voice_name = voice_name
+        self._handler = handler
 
     ### SPECIAL METHODS ###
 
@@ -215,3 +218,7 @@ class PerformedTimespan(abjad.Timespan):
     @property
     def voice_name(self):
         return self._voice_name
+
+    @property
+    def handler(self):
+        return self._handler
