@@ -1,6 +1,6 @@
 from setuptools import setup
 
-install_requires = ["abjad", "quicktions"]
+install_requires = ["abjad", "abjad-ext-rmakers", "quicktions"]
 
 setup(
     name="tsmakers",
