@@ -100,6 +100,12 @@ class MusicSpecifier(HashCachingObject):
             comment = str(comment)
         self._comment = comment
 
+    def __str__(self):
+        return abjad.storage(self)
+
+    def __repr__(self):
+        return abjad.storage(self)
+
     ### PUBLIC METHODS ###
 
     def rotate(self, rotation):

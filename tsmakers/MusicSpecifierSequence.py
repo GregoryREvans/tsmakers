@@ -59,6 +59,12 @@ class MusicSpecifierSequence(object):
         self._application_rate = application_rate
         self._music_specifiers = music_specifiers
 
+    def __str__(self):
+        return abjad.storage(self)
+
+    def __repr__(self):
+        return abjad.storage(self)
+
     ### SPECIAL METHODS ###
 
     def __call__(

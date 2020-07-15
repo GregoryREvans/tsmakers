@@ -97,6 +97,12 @@ class Cursor(object):
             index = int(index)
         self._index = index
 
+    def __str__(self):
+        return abjad.storage(self)
+
+    def __repr__(self):
+        return abjad.storage(self)
+
     ### SPECIAL METHODS ###
 
     def __iter__(self):

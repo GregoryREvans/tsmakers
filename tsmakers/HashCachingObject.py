@@ -16,6 +16,12 @@ class HashCachingObject(object):
         self._format = None
         self._hash = None
 
+    def __str__(self):
+        return abjad.storage(self)
+
+    def __repr__(self):
+        return abjad.storage(self)
+
     ### SPECIAL METHODS ###
 
     # @profile

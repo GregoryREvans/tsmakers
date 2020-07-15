@@ -175,6 +175,12 @@ class tree(object):
         self.levelorder = levelorder(root)
         self.levelbylevel = levelbylevel(root)
 
+    def __str__(self):
+        return abjad.storage(self)
+
+    def __repr__(self):
+        return abjad.storage(self)
+
     def get_level_order(self):
         return self.levelorder
 
