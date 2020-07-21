@@ -7,20 +7,11 @@ from .HashCachingObject import HashCachingObject
 class MusicSpecifier(HashCachingObject):
     r"""A music specifier.
 
-    ::
-
-        >>> music_specifier = tsmakers.MusicSpecifier()
-        >>> abjad.f(music_specifier)
-        tsmakers.MusicSpecifier()
-
     ..  container:: example
 
-        MusicSpecifier can accept CompositeRhythmMakers in their `rhythm_maker`
-        slot:
-
-        ::
-
-            >>> music_specifier = tsmakers.MusicSpecifier()
+        >>> music_specifier = tsmakers.MusicSpecifier()
+        >>> print(abjad.storage(music_specifier))
+        tsmakers.MusicSpecifier()
 
     """
 
@@ -108,13 +99,14 @@ class MusicSpecifier(HashCachingObject):
         return abjad.new(self, seed=seed)
 
     def transpose(self, expr):
-        r"""Transposes music specifier.
+        r"""
+        Transposes music specifier.
 
-        ::
+        ..  container:: example
 
             >>> music_specifier = tsmakers.MusicSpecifier()
             >>> transposed_music_specifier = music_specifier.transpose('-M2')
-            >>> abjad.f(transposed_music_specifier)
+            >>> print(abjad.storage(transposed_music_specifier))
             tsmakers.MusicSpecifier()
 
         Returns new music specifier.

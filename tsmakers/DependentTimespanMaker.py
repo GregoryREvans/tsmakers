@@ -9,7 +9,7 @@ from .TimespanMaker import TimespanMaker
 class DependentTimespanMaker(TimespanMaker):
     r"""A dependent timespan-maker.
 
-    ::
+    ..  container:: example
 
         >>> timespan_maker = tsmakers.DependentTimespanMaker(
         ...     include_inner_starts=True,
@@ -18,14 +18,14 @@ class DependentTimespanMaker(TimespanMaker):
         ...         'Viola Voice',
         ...          ),
         ...     )
-        >>> print(format(timespan_maker))
+        >>> print(abjad.storage(timespan_maker))
         tsmakers.DependentTimespanMaker(
             include_inner_starts=True,
             include_inner_stops=True,
             voice_names=('Viola Voice',),
             )
 
-    ::
+    ..  container:: example
 
         >>> timespan_list = abjad.TimespanList([
         ...     tsmakers.PerformedTimespan(
@@ -39,9 +39,6 @@ class DependentTimespanMaker(TimespanMaker):
         ...         stop_offset=(3, 2),
         ...         ),
         ...     ])
-
-    ::
-
         >>> music_specifiers = {
         ...     'Violin Voice': None,
         ...     'Cello Voice': None,
@@ -52,51 +49,65 @@ class DependentTimespanMaker(TimespanMaker):
         ...     target_timespan=target_timespan,
         ...     timespan_list=timespan_list,
         ...     )
-        >>> abjad.f(timespan_list)
-        abjad.TimespanList(
-            [
-                tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset((1, 4)),
-                    stop_offset=abjad.Offset((1, 1)),
-                    voice_name='Viola Voice',
-                    ),
-                tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset((1, 2)),
-                    stop_offset=abjad.Offset((3, 4)),
-                    voice_name='Cello Voice',
-                    ),
-                tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset((1, 2)),
-                    stop_offset=abjad.Offset((3, 4)),
-                    voice_name='Violin Voice',
-                    ),
-                tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset((3, 4)),
-                    stop_offset=abjad.Offset((1, 1)),
-                    voice_name='Cello Voice',
-                    ),
-                tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset((3, 4)),
-                    stop_offset=abjad.Offset((1, 1)),
-                    voice_name='Violin Voice',
-                    ),
-                tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset((3, 4)),
-                    stop_offset=abjad.Offset((3, 2)),
-                    voice_name='Viola Voice',
-                    ),
-                tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset((1, 1)),
-                    stop_offset=abjad.Offset((3, 2)),
-                    voice_name='Cello Voice',
-                    ),
-                tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset((1, 1)),
-                    stop_offset=abjad.Offset((3, 2)),
-                    voice_name='Violin Voice',
-                    ),
-                ]
-            )
+        >>> ts_list = abjad.TimespanList(
+        ...     [
+        ...         abjad.AnnotatedTimespan(
+        ...             start_offset=_.start_offset,
+        ...             stop_offset=_.stop_offset,
+        ...             annotation=_.voice_name,
+        ...         )
+        ...         for _ in timespan_list
+        ...     ]
+        ... )
+        >>> abjad.show(ts_list, scale=0.5, key="annotation", sort_callable=evans.human_sorted_keys) # doctest: +SKIP
+
+        .. docs::
+
+            >>> abjad.f(timespan_list)
+            abjad.TimespanList(
+                [
+                    tsmakers.PerformedTimespan(
+                        start_offset=abjad.Offset((1, 4)),
+                        stop_offset=abjad.Offset((1, 1)),
+                        voice_name='Viola Voice',
+                        ),
+                    tsmakers.PerformedTimespan(
+                        start_offset=abjad.Offset((1, 2)),
+                        stop_offset=abjad.Offset((3, 4)),
+                        voice_name='Cello Voice',
+                        ),
+                    tsmakers.PerformedTimespan(
+                        start_offset=abjad.Offset((1, 2)),
+                        stop_offset=abjad.Offset((3, 4)),
+                        voice_name='Violin Voice',
+                        ),
+                    tsmakers.PerformedTimespan(
+                        start_offset=abjad.Offset((3, 4)),
+                        stop_offset=abjad.Offset((1, 1)),
+                        voice_name='Cello Voice',
+                        ),
+                    tsmakers.PerformedTimespan(
+                        start_offset=abjad.Offset((3, 4)),
+                        stop_offset=abjad.Offset((1, 1)),
+                        voice_name='Violin Voice',
+                        ),
+                    tsmakers.PerformedTimespan(
+                        start_offset=abjad.Offset((3, 4)),
+                        stop_offset=abjad.Offset((3, 2)),
+                        voice_name='Viola Voice',
+                        ),
+                    tsmakers.PerformedTimespan(
+                        start_offset=abjad.Offset((1, 1)),
+                        stop_offset=abjad.Offset((3, 2)),
+                        voice_name='Cello Voice',
+                        ),
+                    tsmakers.PerformedTimespan(
+                        start_offset=abjad.Offset((1, 1)),
+                        stop_offset=abjad.Offset((3, 2)),
+                        voice_name='Violin Voice',
+                        ),
+                    ]
+                )
 
     """
 

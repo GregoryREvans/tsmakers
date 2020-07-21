@@ -4,44 +4,57 @@ from .TimespanMaker import TimespanMaker
 
 
 class FloodedTimespanMaker(TimespanMaker):
-    r"""A flooded timespan maker.
+    r"""
+    A flooded timespan maker.
 
-    ::
+    ..  container:: example
 
         >>> timespan_maker = tsmakers.FloodedTimespanMaker()
-        >>> print(format(timespan_maker))
+        >>> print(abjad.storage(timespan_maker))
         tsmakers.FloodedTimespanMaker()
-
-    ::
 
         >>> music_specifiers = {
         ...     'Violin Voice': 'violin music',
         ...     'Cello Voice': 'cello music',
-        ...     }
+        ... }
         >>> target_timespan = abjad.Timespan((1, 2), (2, 1))
         >>> timespan_list = timespan_maker(
         ...     music_specifiers=music_specifiers,
         ...     target_timespan=target_timespan,
-        ...     )
-        >>> abjad.f(timespan_list)
-        abjad.TimespanList(
-            [
-                tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset((1, 2)),
-                    stop_offset=abjad.Offset((2, 1)),
-                    music_specifier='cello music',
-                    voice_name='Cello Voice',
-                    ),
-                tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset((1, 2)),
-                    stop_offset=abjad.Offset((2, 1)),
-                    music_specifier='violin music',
-                    voice_name='Violin Voice',
-                    ),
-                ]
-            )
+        ... )
+        >>> ts_list = abjad.TimespanList(
+        ...     [
+        ...         abjad.AnnotatedTimespan(
+        ...             start_offset=_.start_offset,
+        ...             stop_offset=_.stop_offset,
+        ...             annotation=_.voice_name,
+        ...         )
+        ...         for _ in timespan_list
+        ...     ]
+        ... )
+        >>> abjad.show(ts_list, scale=0.5, key="annotation", sort_callable=evans.human_sorted_keys) # doctest: +SKIP
 
-    ::
+        .. docs::
+
+            >>> print(abjad.storage(timespan_list))
+            abjad.TimespanList(
+                [
+                    tsmakers.PerformedTimespan(
+                        start_offset=abjad.Offset((1, 2)),
+                        stop_offset=abjad.Offset((2, 1)),
+                        music_specifier='cello music',
+                        voice_name='Cello Voice',
+                        ),
+                    tsmakers.PerformedTimespan(
+                        start_offset=abjad.Offset((1, 2)),
+                        stop_offset=abjad.Offset((2, 1)),
+                        music_specifier='violin music',
+                        voice_name='Violin Voice',
+                        ),
+                    ]
+                )
+
+    ..  container:: example
 
         >>> music_specifier = tsmakers.CompositeMusicSpecifier(
         ...     primary_music_specifier='one',
@@ -60,23 +73,37 @@ class FloodedTimespanMaker(TimespanMaker):
         ...     music_specifiers=music_specifiers,
         ...     target_timespan=target_timespan,
         ...     )
-        >>> abjad.f(timespan_list)
-        abjad.TimespanList(
-            [
-                tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset((1, 2)),
-                    stop_offset=abjad.Offset((2, 1)),
-                    music_specifier='two',
-                    voice_name='Viola 1 LH',
-                    ),
-                tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset((1, 2)),
-                    stop_offset=abjad.Offset((2, 1)),
-                    music_specifier='one',
-                    voice_name='Viola 1 RH',
-                    ),
-                ]
-            )
+        >>> ts_list = abjad.TimespanList(
+        ...     [
+        ...         abjad.AnnotatedTimespan(
+        ...             start_offset=_.start_offset,
+        ...             stop_offset=_.stop_offset,
+        ...             annotation=_.voice_name,
+        ...         )
+        ...         for _ in timespan_list
+        ...     ]
+        ... )
+        >>> abjad.show(ts_list, scale=0.5, key="annotation", sort_callable=evans.human_sorted_keys) # doctest: +SKIP
+
+        .. docs::
+
+            >>> print(abjad.storage(timespan_list))
+            abjad.TimespanList(
+                [
+                    tsmakers.PerformedTimespan(
+                        start_offset=abjad.Offset((1, 2)),
+                        stop_offset=abjad.Offset((2, 1)),
+                        music_specifier='two',
+                        voice_name='Viola 1 LH',
+                        ),
+                    tsmakers.PerformedTimespan(
+                        start_offset=abjad.Offset((1, 2)),
+                        stop_offset=abjad.Offset((2, 1)),
+                        music_specifier='one',
+                        voice_name='Viola 1 RH',
+                        ),
+                    ]
+                )
 
     """
 

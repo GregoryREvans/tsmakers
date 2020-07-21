@@ -9,7 +9,7 @@ def divrewrite(tr, rulelst):
             if nde.value % rule[0] == 0:
                 for val in rule[1]:
                     nde.insert_child(val)
-    return tree()
+    return TimespanTree()
 
 
 def flatten(lst):
@@ -50,14 +50,14 @@ def tally(lst):
     return out
 
 
-class node(object):
+class TimespanTreeNode(object):
     def __init__(self, num=1, parent=None):
         self.value = num
         self.children = []
         self.parent = parent
 
     def insert_child(self, num):
-        self.children.append(node(num, parent=self))
+        self.children.append(TimespanTreeNode(num, parent=self))
 
     def get_children(self):
         return self.children
@@ -113,60 +113,78 @@ class node(object):
             return abjad.Timespan(self.offset(), self.offset() + self.get_real_value())
 
 
-class tree(object):
-    """
-    >>> a = tsmakers.TimespanTree.node(10)
-    >>> a.insert_child(1)
-    >>> a.insert_child(1)
-    >>> a.insert_child(1)
-    >>> a.insert_child(1)
-    >>> a.insert_child(1)
-    >>> a.insert_child(1)
-    >>> a.insert_child(1)
-    >>> a.insert_child(1)
-    >>> b, c, d, e, f, g, h, i = a.children
-    >>> demotree = tsmakers.TimespanTree.tree(a)
-    >>> abjad.f(demotree.tspanlist())
-    abjad.TimespanList(
-        [
-            abjad.Timespan(
-                start_offset=abjad.Offset((0, 1)),
-                stop_offset=abjad.Offset((10, 1)),
-                ),
-            abjad.Timespan(
-                start_offset=abjad.Offset((0, 1)),
-                stop_offset=abjad.Offset((5, 4)),
-                ),
-            abjad.Timespan(
-                start_offset=abjad.Offset((5, 4)),
-                stop_offset=abjad.Offset((5, 2)),
-                ),
-            abjad.Timespan(
-                start_offset=abjad.Offset((5, 2)),
-                stop_offset=abjad.Offset((15, 4)),
-                ),
-            abjad.Timespan(
-                start_offset=abjad.Offset((15, 4)),
-                stop_offset=abjad.Offset((5, 1)),
-                ),
-            abjad.Timespan(
-                start_offset=abjad.Offset((5, 1)),
-                stop_offset=abjad.Offset((25, 4)),
-                ),
-            abjad.Timespan(
-                start_offset=abjad.Offset((25, 4)),
-                stop_offset=abjad.Offset((15, 2)),
-                ),
-            abjad.Timespan(
-                start_offset=abjad.Offset((15, 2)),
-                stop_offset=abjad.Offset((35, 4)),
-                ),
-            abjad.Timespan(
-                start_offset=abjad.Offset((35, 4)),
-                stop_offset=abjad.Offset((10, 1)),
-                ),
-            ]
-        )
+class TimespanTree(object):
+    r"""
+
+    ..  container:: example
+
+        >>> a = tsmakers.TimespanTreeNode(10)
+        >>> a.insert_child(1)
+        >>> a.insert_child(1)
+        >>> a.insert_child(1)
+        >>> a.insert_child(1)
+        >>> a.insert_child(1)
+        >>> a.insert_child(1)
+        >>> a.insert_child(1)
+        >>> a.insert_child(1)
+        >>> b, c, d, e, f, g, h, i = a.children
+        >>> b.insert_child(2)
+        >>> b.insert_child(1)
+        >>> j, k = b.children
+        >>> demotree = tsmakers.TimespanTree(a)
+        >>> abjad.show(demotree.tspanlist()) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(demotree.tspanlist())
+            abjad.TimespanList(
+                [
+                    abjad.Timespan(
+                        start_offset=abjad.Offset((0, 1)),
+                        stop_offset=abjad.Offset((10, 1)),
+                        ),
+                    abjad.Timespan(
+                        start_offset=abjad.Offset((0, 1)),
+                        stop_offset=abjad.Offset((5, 4)),
+                        ),
+                    abjad.Timespan(
+                        start_offset=abjad.Offset((5, 4)),
+                        stop_offset=abjad.Offset((5, 2)),
+                        ),
+                    abjad.Timespan(
+                        start_offset=abjad.Offset((5, 2)),
+                        stop_offset=abjad.Offset((15, 4)),
+                        ),
+                    abjad.Timespan(
+                        start_offset=abjad.Offset((15, 4)),
+                        stop_offset=abjad.Offset((5, 1)),
+                        ),
+                    abjad.Timespan(
+                        start_offset=abjad.Offset((5, 1)),
+                        stop_offset=abjad.Offset((25, 4)),
+                        ),
+                    abjad.Timespan(
+                        start_offset=abjad.Offset((25, 4)),
+                        stop_offset=abjad.Offset((15, 2)),
+                        ),
+                    abjad.Timespan(
+                        start_offset=abjad.Offset((15, 2)),
+                        stop_offset=abjad.Offset((35, 4)),
+                        ),
+                    abjad.Timespan(
+                        start_offset=abjad.Offset((35, 4)),
+                        stop_offset=abjad.Offset((10, 1)),
+                        ),
+                    abjad.Timespan(
+                        start_offset=abjad.Offset((0, 1)),
+                        stop_offset=abjad.Offset((5, 6)),
+                        ),
+                    abjad.Timespan(
+                        start_offset=abjad.Offset((5, 6)),
+                        stop_offset=abjad.Offset((5, 4)),
+                        ),
+                    ]
+                )
 
     """
 

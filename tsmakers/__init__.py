@@ -1,4 +1,7 @@
-from . import TimespanTree
+"""
+Timespan Makers
+"""
+from .tree import TimespanTree, TimespanTreeNode
 from .BoundaryTimespanMaker import BoundaryTimespanMaker
 from .CascadingTimespanMaker import CascadingTimespanMaker
 from .CompositeMusicSpecifier import CompositeMusicSpecifier
@@ -16,6 +19,7 @@ from .TimespanSpecifier import TimespanSpecifier
 
 __all__ = [
     "TimespanTree",
+    "TimespanTreeNode",
     "BoundaryTimespanMaker",
     "CascadingTimespanMaker",
     "CompositeMusicSpecifier",

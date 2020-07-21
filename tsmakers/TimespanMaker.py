@@ -11,7 +11,8 @@ from .TimespanSpecifier import TimespanSpecifier
 
 
 class TimespanMaker(object):
-    r"""Abstract base class for timespan makers.
+    r"""
+    Abstract base class for timespan makers.
     """
 
     ### CLASS VARIABLES ###

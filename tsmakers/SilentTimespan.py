@@ -2,7 +2,8 @@ import abjad
 
 
 class SilentTimespan(abjad.Timespan):
-    r"""A silent timespan.
+    r"""
+    A silent timespan.
     """
 
     ### CLASS VARIABLES ###

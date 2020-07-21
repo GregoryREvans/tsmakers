@@ -6,25 +6,26 @@ from abjadext import rmakers
 
 
 class MusicSpecifierSequence(object):
-    r"""A music specifier sequence.
+    r"""
+    A music specifier sequence.
 
-    ::
+    ..  container:: example
 
         >>> sequence_a = tsmakers.MusicSpecifierSequence(
         ...     music_specifiers='music',
         ...     )
-        >>> abjad.f(sequence_a)
+        >>> print(abjad.storage(sequence_a))
         tsmakers.MusicSpecifierSequence(
             music_specifiers=('music',),
             )
 
-    ::
+    ..  container:: example
 
         >>> sequence_b = tsmakers.MusicSpecifierSequence(
         ...     application_rate='phrase',
         ...     music_specifiers=['one', 'two', 'three'],
         ...     )
-        >>> abjad.f(sequence_b)
+        >>> print(abjad.storage(sequence_b))
         tsmakers.MusicSpecifierSequence(
             application_rate='phrase',
             music_specifiers=('one', 'two', 'three'),
