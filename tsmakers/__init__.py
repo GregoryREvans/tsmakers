@@ -1,5 +1,7 @@
 """
 Timespan Makers
+
+A port of a variety of tools from Josiah Wolf Oberholtzer's ``Consort`` to `Abjad 3.1`.
 """
 from .tree import TimespanTree, TimespanTreeNode
 from .BoundaryTimespanMaker import BoundaryTimespanMaker
