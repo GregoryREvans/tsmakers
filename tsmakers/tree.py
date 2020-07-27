@@ -237,6 +237,187 @@ class TimespanTree(object):
                     ]
                 )
 
+    ..  container:: example
+
+        >>> a = tsmakers.TimespanTreeNode(10)
+        >>> a.insert_child(8)
+        >>> a.insert_child(5)
+        >>> b, c,  = a.children
+        >>> b.insert_child(8)
+        >>> b.insert_child(5)
+        >>> c.insert_child(8)
+        >>> c.insert_child(5)
+        >>> d, e,  = b.children
+        >>> f, g,  = c.children
+        >>> d.insert_child(8)
+        >>> d.insert_child(5)
+        >>> e.insert_child(8)
+        >>> e.insert_child(5)
+        >>> f.insert_child(8)
+        >>> f.insert_child(5)
+        >>> g.insert_child(8)
+        >>> g.insert_child(5)
+        >>> h, i,  = d.children
+        >>> j, k,  = e.children
+        >>> l, m,  = f.children
+        >>> n, o,  = g.children
+        >>> h.insert_child(8)
+        >>> h.insert_child(5)
+        >>> i.insert_child(8)
+        >>> i.insert_child(5)
+        >>> j.insert_child(8)
+        >>> j.insert_child(5)
+        >>> k.insert_child(8)
+        >>> k.insert_child(5)
+        >>> l.insert_child(8)
+        >>> l.insert_child(5)
+        >>> m.insert_child(8)
+        >>> m.insert_child(5)
+        >>> n.insert_child(8)
+        >>> n.insert_child(5)
+        >>> o.insert_child(8)
+        >>> o.insert_child(5)
+        >>> demotree = tsmakers.TimespanTree(a)
+        >>> demotree_list = demotree.tspanlist()
+        >>> demotree_list = demotree_list.round_offsets(
+        ...     abjad.Duration((1, 8)),
+        ...     anchor=abjad.Left,
+        ... )
+        ...
+        >>> abjad.show(demotree_list, scale=0.7) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(demotree_list)
+            abjad.TimespanList(
+                [
+                    abjad.Timespan(
+                        start_offset=abjad.Offset((0, 1)),
+                        stop_offset=abjad.Offset((10, 1)),
+                        ),
+                    abjad.Timespan(
+                        start_offset=abjad.Offset((0, 1)),
+                        stop_offset=abjad.Offset((49, 8)),
+                        ),
+                    abjad.Timespan(
+                        start_offset=abjad.Offset((49, 8)),
+                        stop_offset=abjad.Offset((10, 1)),
+                        ),
+                    abjad.Timespan(
+                        start_offset=abjad.Offset((0, 1)),
+                        stop_offset=abjad.Offset((15, 4)),
+                        ),
+                    abjad.Timespan(
+                        start_offset=abjad.Offset((15, 4)),
+                        stop_offset=abjad.Offset((49, 8)),
+                        ),
+                    abjad.Timespan(
+                        start_offset=abjad.Offset((49, 8)),
+                        stop_offset=abjad.Offset((17, 2)),
+                        ),
+                    abjad.Timespan(
+                        start_offset=abjad.Offset((17, 2)),
+                        stop_offset=abjad.Offset((10, 1)),
+                        ),
+                    abjad.Timespan(
+                        start_offset=abjad.Offset((0, 1)),
+                        stop_offset=abjad.Offset((19, 8)),
+                        ),
+                    abjad.Timespan(
+                        start_offset=abjad.Offset((19, 8)),
+                        stop_offset=abjad.Offset((15, 4)),
+                        ),
+                    abjad.Timespan(
+                        start_offset=abjad.Offset((15, 4)),
+                        stop_offset=abjad.Offset((21, 4)),
+                        ),
+                    abjad.Timespan(
+                        start_offset=abjad.Offset((21, 4)),
+                        stop_offset=abjad.Offset((49, 8)),
+                        ),
+                    abjad.Timespan(
+                        start_offset=abjad.Offset((49, 8)),
+                        stop_offset=abjad.Offset((61, 8)),
+                        ),
+                    abjad.Timespan(
+                        start_offset=abjad.Offset((61, 8)),
+                        stop_offset=abjad.Offset((17, 2)),
+                        ),
+                    abjad.Timespan(
+                        start_offset=abjad.Offset((17, 2)),
+                        stop_offset=abjad.Offset((75, 8)),
+                        ),
+                    abjad.Timespan(
+                        start_offset=abjad.Offset((75, 8)),
+                        stop_offset=abjad.Offset((10, 1)),
+                        ),
+                    abjad.Timespan(
+                        start_offset=abjad.Offset((0, 1)),
+                        stop_offset=abjad.Offset((11, 8)),
+                        ),
+                    abjad.Timespan(
+                        start_offset=abjad.Offset((11, 8)),
+                        stop_offset=abjad.Offset((19, 8)),
+                        ),
+                    abjad.Timespan(
+                        start_offset=abjad.Offset((19, 8)),
+                        stop_offset=abjad.Offset((13, 4)),
+                        ),
+                    abjad.Timespan(
+                        start_offset=abjad.Offset((13, 4)),
+                        stop_offset=abjad.Offset((15, 4)),
+                        ),
+                    abjad.Timespan(
+                        start_offset=abjad.Offset((15, 4)),
+                        stop_offset=abjad.Offset((37, 8)),
+                        ),
+                    abjad.Timespan(
+                        start_offset=abjad.Offset((37, 8)),
+                        stop_offset=abjad.Offset((21, 4)),
+                        ),
+                    abjad.Timespan(
+                        start_offset=abjad.Offset((21, 4)),
+                        stop_offset=abjad.Offset((23, 4)),
+                        ),
+                    abjad.Timespan(
+                        start_offset=abjad.Offset((23, 4)),
+                        stop_offset=abjad.Offset((49, 8)),
+                        ),
+                    abjad.Timespan(
+                        start_offset=abjad.Offset((49, 8)),
+                        stop_offset=abjad.Offset((7, 1)),
+                        ),
+                    abjad.Timespan(
+                        start_offset=abjad.Offset((7, 1)),
+                        stop_offset=abjad.Offset((61, 8)),
+                        ),
+                    abjad.Timespan(
+                        start_offset=abjad.Offset((61, 8)),
+                        stop_offset=abjad.Offset((65, 8)),
+                        ),
+                    abjad.Timespan(
+                        start_offset=abjad.Offset((65, 8)),
+                        stop_offset=abjad.Offset((17, 2)),
+                        ),
+                    abjad.Timespan(
+                        start_offset=abjad.Offset((17, 2)),
+                        stop_offset=abjad.Offset((73, 8)),
+                        ),
+                    abjad.Timespan(
+                        start_offset=abjad.Offset((73, 8)),
+                        stop_offset=abjad.Offset((75, 8)),
+                        ),
+                    abjad.Timespan(
+                        start_offset=abjad.Offset((75, 8)),
+                        stop_offset=abjad.Offset((39, 4)),
+                        ),
+                    abjad.Timespan(
+                        start_offset=abjad.Offset((39, 4)),
+                        stop_offset=abjad.Offset((10, 1)),
+                        ),
+                    ]
+                )
+
     """
 
     def __init__(self, root):
