@@ -15,33 +15,33 @@ class DependentTimespanMaker(TimespanMaker):
         ...     include_inner_starts=True,
         ...     include_inner_stops=True,
         ...     voice_names=(
-        ...         'Viola Voice',
+        ...         'A',
         ...          ),
         ...     )
         >>> print(abjad.storage(timespan_maker))
         tsmakers.DependentTimespanMaker(
             include_inner_starts=True,
             include_inner_stops=True,
-            voice_names=('Viola Voice',),
+            voice_names=('A',),
             )
 
     ..  container:: example
 
         >>> timespan_list = abjad.TimespanList([
         ...     tsmakers.PerformedTimespan(
-        ...         voice_name='Viola Voice',
+        ...         voice_name='A',
         ...         start_offset=(1, 4),
         ...         stop_offset=(1, 1),
         ...         ),
         ...     tsmakers.PerformedTimespan(
-        ...         voice_name='Viola Voice',
+        ...         voice_name='A',
         ...         start_offset=(3, 4),
         ...         stop_offset=(3, 2),
         ...         ),
         ...     ])
         >>> music_specifiers = {
-        ...     'Violin Voice': None,
-        ...     'Cello Voice': None,
+        ...     'B': None,
+        ...     'C': None,
         ...     }
         >>> target_timespan = abjad.Timespan((1, 2), (2, 1))
         >>> timespan_list = timespan_maker(
@@ -59,7 +59,7 @@ class DependentTimespanMaker(TimespanMaker):
         ...         for _ in timespan_list
         ...     ]
         ... )
-        >>> abjad.show(ts_list, scale=0.5, key="annotation", sort_callable=evans.human_sorted_keys) # doctest: +SKIP
+        >>> abjad.show(ts_list, scale=0.5, key="annotation") # doctest: +SKIP
 
         .. docs::
 
@@ -69,42 +69,42 @@ class DependentTimespanMaker(TimespanMaker):
                     tsmakers.PerformedTimespan(
                         start_offset=abjad.Offset((1, 4)),
                         stop_offset=abjad.Offset((1, 1)),
-                        voice_name='Viola Voice',
+                        voice_name='A',
                         ),
                     tsmakers.PerformedTimespan(
                         start_offset=abjad.Offset((1, 2)),
                         stop_offset=abjad.Offset((3, 4)),
-                        voice_name='Cello Voice',
+                        voice_name='B',
                         ),
                     tsmakers.PerformedTimespan(
                         start_offset=abjad.Offset((1, 2)),
                         stop_offset=abjad.Offset((3, 4)),
-                        voice_name='Violin Voice',
+                        voice_name='C',
                         ),
                     tsmakers.PerformedTimespan(
                         start_offset=abjad.Offset((3, 4)),
                         stop_offset=abjad.Offset((1, 1)),
-                        voice_name='Cello Voice',
+                        voice_name='B',
                         ),
                     tsmakers.PerformedTimespan(
                         start_offset=abjad.Offset((3, 4)),
                         stop_offset=abjad.Offset((1, 1)),
-                        voice_name='Violin Voice',
+                        voice_name='C',
                         ),
                     tsmakers.PerformedTimespan(
                         start_offset=abjad.Offset((3, 4)),
                         stop_offset=abjad.Offset((3, 2)),
-                        voice_name='Viola Voice',
+                        voice_name='A',
                         ),
                     tsmakers.PerformedTimespan(
                         start_offset=abjad.Offset((1, 1)),
                         stop_offset=abjad.Offset((3, 2)),
-                        voice_name='Cello Voice',
+                        voice_name='B',
                         ),
                     tsmakers.PerformedTimespan(
                         start_offset=abjad.Offset((1, 1)),
                         stop_offset=abjad.Offset((3, 2)),
-                        voice_name='Violin Voice',
+                        voice_name='C',
                         ),
                     ]
                 )

@@ -45,8 +45,10 @@ class TaleaTimespanMaker(TimespanMaker):
 
         >>> import collections
         >>> music_specifiers = collections.OrderedDict([
-        ...     ('Violin', None),
-        ...     ('Viola', None),
+        ...     ('A', None),
+        ...     ('B', None),
+        ...     ('C', None),
+        ...     ('D', None),
         ...     ])
         >>> target_timespan = abjad.Timespan(0, 1)
         >>> timespan_list = timespan_maker(
@@ -63,7 +65,7 @@ class TaleaTimespanMaker(TimespanMaker):
         ...         for _ in timespan_list
         ...     ]
         ... )
-        >>> abjad.show(ts_list, scale=0.5, key="annotation", sort_callable=evans.human_sorted_keys) # doctest: +SKIP
+        >>> abjad.show(ts_list, scale=0.5, key="annotation") # doctest: +SKIP
 
         .. docs::
 
@@ -73,22 +75,42 @@ class TaleaTimespanMaker(TimespanMaker):
                     tsmakers.PerformedTimespan(
                         start_offset=abjad.Offset((0, 1)),
                         stop_offset=abjad.Offset((1, 4)),
-                        voice_name='Violin',
+                        voice_name='A',
+                        ),
+                    tsmakers.PerformedTimespan(
+                        start_offset=abjad.Offset((0, 1)),
+                        stop_offset=abjad.Offset((1, 4)),
+                        voice_name='C',
                         ),
                     tsmakers.PerformedTimespan(
                         start_offset=abjad.Offset((1, 4)),
                         stop_offset=abjad.Offset((1, 2)),
-                        voice_name='Viola',
+                        voice_name='B',
+                        ),
+                    tsmakers.PerformedTimespan(
+                        start_offset=abjad.Offset((1, 4)),
+                        stop_offset=abjad.Offset((1, 2)),
+                        voice_name='D',
                         ),
                     tsmakers.PerformedTimespan(
                         start_offset=abjad.Offset((1, 2)),
                         stop_offset=abjad.Offset((3, 4)),
-                        voice_name='Violin',
+                        voice_name='A',
+                        ),
+                    tsmakers.PerformedTimespan(
+                        start_offset=abjad.Offset((1, 2)),
+                        stop_offset=abjad.Offset((3, 4)),
+                        voice_name='C',
                         ),
                     tsmakers.PerformedTimespan(
                         start_offset=abjad.Offset((3, 4)),
                         stop_offset=abjad.Offset((1, 1)),
-                        voice_name='Viola',
+                        voice_name='B',
+                        ),
+                    tsmakers.PerformedTimespan(
+                        start_offset=abjad.Offset((3, 4)),
+                        stop_offset=abjad.Offset((1, 1)),
+                        voice_name='D',
                         ),
                     ]
                 )
@@ -113,7 +135,7 @@ class TaleaTimespanMaker(TimespanMaker):
         ...         for _ in timespan_list
         ...     ]
         ... )
-        >>> abjad.show(ts_list, scale=0.5, key="annotation", sort_callable=evans.human_sorted_keys) # doctest: +SKIP
+        >>> abjad.show(ts_list, scale=0.5, key="annotation") # doctest: +SKIP
 
         .. docs::
 
@@ -123,22 +145,42 @@ class TaleaTimespanMaker(TimespanMaker):
                     tsmakers.PerformedTimespan(
                         start_offset=abjad.Offset((0, 1)),
                         stop_offset=abjad.Offset((1, 4)),
-                        voice_name='Viola',
+                        voice_name='A',
                         ),
                     tsmakers.PerformedTimespan(
                         start_offset=abjad.Offset((0, 1)),
                         stop_offset=abjad.Offset((1, 4)),
-                        voice_name='Violin',
+                        voice_name='B',
+                        ),
+                    tsmakers.PerformedTimespan(
+                        start_offset=abjad.Offset((0, 1)),
+                        stop_offset=abjad.Offset((1, 4)),
+                        voice_name='C',
+                        ),
+                    tsmakers.PerformedTimespan(
+                        start_offset=abjad.Offset((0, 1)),
+                        stop_offset=abjad.Offset((1, 4)),
+                        voice_name='D',
                         ),
                     tsmakers.PerformedTimespan(
                         start_offset=abjad.Offset((1, 2)),
                         stop_offset=abjad.Offset((3, 4)),
-                        voice_name='Viola',
+                        voice_name='A',
                         ),
                     tsmakers.PerformedTimespan(
                         start_offset=abjad.Offset((1, 2)),
                         stop_offset=abjad.Offset((3, 4)),
-                        voice_name='Violin',
+                        voice_name='B',
+                        ),
+                    tsmakers.PerformedTimespan(
+                        start_offset=abjad.Offset((1, 2)),
+                        stop_offset=abjad.Offset((3, 4)),
+                        voice_name='C',
+                        ),
+                    tsmakers.PerformedTimespan(
+                        start_offset=abjad.Offset((1, 2)),
+                        stop_offset=abjad.Offset((3, 4)),
+                        voice_name='D',
                         ),
                     ]
                 )
@@ -165,7 +207,7 @@ class TaleaTimespanMaker(TimespanMaker):
         ...         for _ in timespan_list
         ...     ]
         ... )
-        >>> abjad.show(ts_list, scale=0.5, key="annotation", sort_callable=evans.human_sorted_keys) # doctest: +SKIP
+        >>> abjad.show(ts_list, scale=0.5, key="annotation") # doctest: +SKIP
 
         .. docs::
 
@@ -175,22 +217,42 @@ class TaleaTimespanMaker(TimespanMaker):
                     tsmakers.PerformedTimespan(
                         start_offset=abjad.Offset((0, 1)),
                         stop_offset=abjad.Offset((1, 4)),
-                        voice_name='Violin',
+                        voice_name='A',
+                        ),
+                    tsmakers.PerformedTimespan(
+                        start_offset=abjad.Offset((0, 1)),
+                        stop_offset=abjad.Offset((1, 4)),
+                        voice_name='C',
                         ),
                     tsmakers.PerformedTimespan(
                         start_offset=abjad.Offset((1, 8)),
                         stop_offset=abjad.Offset((3, 8)),
-                        voice_name='Viola',
+                        voice_name='B',
+                        ),
+                    tsmakers.PerformedTimespan(
+                        start_offset=abjad.Offset((1, 8)),
+                        stop_offset=abjad.Offset((3, 8)),
+                        voice_name='D',
                         ),
                     tsmakers.PerformedTimespan(
                         start_offset=abjad.Offset((5, 8)),
                         stop_offset=abjad.Offset((7, 8)),
-                        voice_name='Violin',
+                        voice_name='A',
+                        ),
+                    tsmakers.PerformedTimespan(
+                        start_offset=abjad.Offset((5, 8)),
+                        stop_offset=abjad.Offset((7, 8)),
+                        voice_name='C',
                         ),
                     tsmakers.PerformedTimespan(
                         start_offset=abjad.Offset((3, 4)),
                         stop_offset=abjad.Offset((1, 1)),
-                        voice_name='Viola',
+                        voice_name='B',
+                        ),
+                    tsmakers.PerformedTimespan(
+                        start_offset=abjad.Offset((3, 4)),
+                        stop_offset=abjad.Offset((1, 1)),
+                        voice_name='D',
                         ),
                     ]
                 )

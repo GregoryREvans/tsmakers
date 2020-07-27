@@ -24,7 +24,7 @@ class BoundaryTimespanMaker(TimespanMaker):
         ...         counts=[1],
         ...         denominator=4,
         ...         ),
-        ...     voice_names=('Violin 1 Voice', 'Violin 2 Voice'),
+        ...     voice_names=('A', 'B'),
         ...     )
         >>> print(abjad.storage(timespan_maker))
         tsmakers.BoundaryTimespanMaker(
@@ -38,7 +38,7 @@ class BoundaryTimespanMaker(TimespanMaker):
                 ),
             start_anchor=Left,
             stop_anchor=Left,
-            voice_names=('Violin 1 Voice', 'Violin 2 Voice'),
+            voice_names=('A', 'B'),
             )
 
     ..  container:: example
@@ -47,20 +47,20 @@ class BoundaryTimespanMaker(TimespanMaker):
         ...     tsmakers.PerformedTimespan(
         ...         start_offset=0,
         ...         stop_offset=1,
-        ...         voice_name='Violin 1 Voice',
+        ...         voice_name='A',
         ...         ),
         ...     tsmakers.PerformedTimespan(
         ...         start_offset=(1, 2),
         ...         stop_offset=(3, 2),
-        ...         voice_name='Violin 2 Voice',
+        ...         voice_name='B',
         ...         ),
         ...     tsmakers.PerformedTimespan(
         ...         start_offset=3,
         ...         stop_offset=4,
-        ...         voice_name='Violin 2 Voice',
+        ...         voice_name='B',
         ...         ),
         ...     ])
-        >>> music_specifiers = {'Cello Voice': None}
+        >>> music_specifiers = {'C': None}
         >>> target_timespan = abjad.Timespan(0, 10)
         >>> timespan_list = timespan_maker(
         ...     music_specifiers=music_specifiers,
@@ -77,7 +77,7 @@ class BoundaryTimespanMaker(TimespanMaker):
         ...         for _ in timespan_list
         ...     ]
         ... )
-        >>> abjad.show(ts_list, scale=0.5, key="annotation", sort_callable=evans.human_sorted_keys) # doctest: +SKIP
+        >>> abjad.show(ts_list, scale=0.5, key="annotation") # doctest: +SKIP
 
         .. docs::
 
@@ -87,37 +87,37 @@ class BoundaryTimespanMaker(TimespanMaker):
                     tsmakers.PerformedTimespan(
                         start_offset=abjad.Offset((0, 1)),
                         stop_offset=abjad.Offset((1, 2)),
-                        voice_name='Cello Voice',
+                        voice_name='C',
                         ),
                     tsmakers.PerformedTimespan(
                         start_offset=abjad.Offset((0, 1)),
                         stop_offset=abjad.Offset((1, 1)),
-                        voice_name='Violin 1 Voice',
+                        voice_name='A',
                         ),
                     tsmakers.PerformedTimespan(
                         start_offset=abjad.Offset((1, 2)),
                         stop_offset=abjad.Offset((3, 2)),
-                        voice_name='Violin 2 Voice',
+                        voice_name='B',
                         ),
                     tsmakers.PerformedTimespan(
                         start_offset=abjad.Offset((3, 2)),
                         stop_offset=abjad.Offset((7, 4)),
-                        voice_name='Cello Voice',
+                        voice_name='C',
                         ),
                     tsmakers.PerformedTimespan(
                         start_offset=abjad.Offset((3, 1)),
                         stop_offset=abjad.Offset((7, 2)),
-                        voice_name='Cello Voice',
+                        voice_name='C',
                         ),
                     tsmakers.PerformedTimespan(
                         start_offset=abjad.Offset((3, 1)),
                         stop_offset=abjad.Offset((4, 1)),
-                        voice_name='Violin 2 Voice',
+                        voice_name='B',
                         ),
                     tsmakers.PerformedTimespan(
                         start_offset=abjad.Offset((4, 1)),
                         stop_offset=abjad.Offset((17, 4)),
-                        voice_name='Cello Voice',
+                        voice_name='C',
                         ),
                     ]
                 )

@@ -54,7 +54,7 @@ class CascadingTimespanMaker(TimespanMaker):
         ...         for _ in timespan_list
         ...     ]
         ... )
-        >>> abjad.show(ts_list, scale=0.5, key="annotation", sort_callable=evans.human_sorted_keys) # doctest: +SKIP
+        >>> abjad.show(ts_list, scale=0.5, key="annotation") # doctest: +SKIP
 
         .. docs::
 
@@ -125,7 +125,7 @@ class CascadingTimespanMaker(TimespanMaker):
         ...         for _ in timespan_list
         ...     ]
         ... )
-        >>> abjad.show(ts_list, scale=0.5, key="annotation", sort_callable=evans.human_sorted_keys) # doctest: +SKIP
+        >>> abjad.show(ts_list, scale=0.5, key="annotation") # doctest: +SKIP
 
         .. docs::
 

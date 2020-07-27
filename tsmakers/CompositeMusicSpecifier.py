@@ -13,9 +13,9 @@ class CompositeMusicSpecifier(HashCachingObject):
 
         >>> music_specifier = tsmakers.CompositeMusicSpecifier(
         ...     primary_music_specifier='one',
-        ...     primary_voice_name='Viola 1 RH',
+        ...     primary_voice_name='A',
         ...     rotation_indices=(0, 1, -1),
-        ...     secondary_voice_name='Viola 1 LH',
+        ...     secondary_voice_name='B',
         ...     secondary_music_specifier=tsmakers.MusicSpecifierSequence(
         ...         application_rate='phrase',
         ...         music_specifiers=('two', 'three', 'four'),
@@ -36,7 +36,7 @@ class CompositeMusicSpecifier(HashCachingObject):
         ...         for _ in timespans
         ...     ]
         ... )
-        >>> abjad.show(ts_list, scale=0.5, key="annotation", sort_callable=evans.human_sorted_keys) # doctest: +SKIP
+        >>> abjad.show(ts_list, scale=0.5, key="annotation") # doctest: +SKIP
 
         .. docs::
 
@@ -47,29 +47,29 @@ class CompositeMusicSpecifier(HashCachingObject):
                         start_offset=abjad.Offset((0, 1)),
                         stop_offset=abjad.Offset((1, 1)),
                         layer=1,
-                        music_specifier='two',
-                        voice_name='Viola 1 LH',
+                        music_specifier='one',
+                        voice_name='A',
                         ),
                     tsmakers.PerformedTimespan(
                         start_offset=abjad.Offset((0, 1)),
                         stop_offset=abjad.Offset((1, 1)),
                         layer=1,
+                        music_specifier='two',
+                        voice_name='B',
+                        ),
+                    tsmakers.PerformedTimespan(
+                        start_offset=abjad.Offset((1, 1)),
+                        stop_offset=abjad.Offset((3, 1)),
+                        layer=1,
                         music_specifier='one',
-                        voice_name='Viola 1 RH',
+                        voice_name='A',
                         ),
                     tsmakers.PerformedTimespan(
                         start_offset=abjad.Offset((1, 1)),
                         stop_offset=abjad.Offset((3, 1)),
                         layer=1,
                         music_specifier='two',
-                        voice_name='Viola 1 LH',
-                        ),
-                    tsmakers.PerformedTimespan(
-                        start_offset=abjad.Offset((1, 1)),
-                        stop_offset=abjad.Offset((3, 1)),
-                        layer=1,
-                        music_specifier='one',
-                        voice_name='Viola 1 RH',
+                        voice_name='B',
                         ),
                     ]
                 )
@@ -92,7 +92,7 @@ class CompositeMusicSpecifier(HashCachingObject):
         ...         for _ in timespans
         ...     ]
         ... )
-        >>> abjad.show(ts_list, scale=0.5, key="annotation", sort_callable=evans.human_sorted_keys) # doctest: +SKIP
+        >>> abjad.show(ts_list, scale=0.5, key="annotation") # doctest: +SKIP
 
         .. docs::
 
@@ -104,28 +104,28 @@ class CompositeMusicSpecifier(HashCachingObject):
                         stop_offset=abjad.Offset((1, 1)),
                         layer=2,
                         music_specifier='one',
-                        voice_name='Viola 1 RH',
+                        voice_name='A',
                         ),
                     tsmakers.PerformedTimespan(
                         start_offset=abjad.Offset((0, 1)),
                         stop_offset=abjad.Offset((2, 1)),
                         layer=2,
                         music_specifier='three',
-                        voice_name='Viola 1 LH',
+                        voice_name='B',
                         ),
                     tsmakers.PerformedTimespan(
                         start_offset=abjad.Offset((1, 1)),
                         stop_offset=abjad.Offset((3, 1)),
                         layer=2,
                         music_specifier='one',
-                        voice_name='Viola 1 RH',
+                        voice_name='A',
                         ),
                     tsmakers.PerformedTimespan(
                         start_offset=abjad.Offset((2, 1)),
                         stop_offset=abjad.Offset((3, 1)),
                         layer=2,
                         music_specifier='three',
-                        voice_name='Viola 1 LH',
+                        voice_name='B',
                         ),
                     ]
                 )
@@ -149,7 +149,7 @@ class CompositeMusicSpecifier(HashCachingObject):
         ...         for _ in timespans
         ...     ]
         ... )
-        >>> abjad.show(ts_list, scale=0.5, key="annotation", sort_callable=evans.human_sorted_keys) # doctest: +SKIP
+        >>> abjad.show(ts_list, scale=0.5, key="annotation") # doctest: +SKIP
 
         .. docs::
 
@@ -160,53 +160,53 @@ class CompositeMusicSpecifier(HashCachingObject):
                         start_offset=abjad.Offset((-1, 1)),
                         stop_offset=abjad.Offset((0, 1)),
                         layer=3,
-                        voice_name='Viola 1 RH',
+                        voice_name='A',
                         ),
                     tsmakers.SilentTimespan(
                         start_offset=abjad.Offset((-1, 1)),
                         stop_offset=abjad.Offset((0, 1)),
                         layer=3,
-                        voice_name='Viola 1 LH',
+                        voice_name='B',
                         ),
                     tsmakers.PerformedTimespan(
                         start_offset=abjad.Offset((0, 1)),
                         stop_offset=abjad.Offset((1, 1)),
                         layer=3,
                         music_specifier='one',
-                        voice_name='Viola 1 RH',
+                        voice_name='A',
                         ),
                     tsmakers.PerformedTimespan(
                         start_offset=abjad.Offset((0, 1)),
                         stop_offset=abjad.Offset((2, 1)),
                         layer=3,
                         music_specifier='four',
-                        voice_name='Viola 1 LH',
+                        voice_name='B',
                         ),
                     tsmakers.PerformedTimespan(
                         start_offset=abjad.Offset((1, 1)),
                         stop_offset=abjad.Offset((3, 1)),
                         layer=3,
                         music_specifier='one',
-                        voice_name='Viola 1 RH',
+                        voice_name='A',
                         ),
                     tsmakers.PerformedTimespan(
                         start_offset=abjad.Offset((2, 1)),
                         stop_offset=abjad.Offset((3, 1)),
                         layer=3,
                         music_specifier='four',
-                        voice_name='Viola 1 LH',
+                        voice_name='B',
                         ),
                     tsmakers.SilentTimespan(
                         start_offset=abjad.Offset((3, 1)),
                         stop_offset=abjad.Offset((4, 1)),
                         layer=3,
-                        voice_name='Viola 1 RH',
+                        voice_name='A',
                         ),
                     tsmakers.SilentTimespan(
                         start_offset=abjad.Offset((3, 1)),
                         stop_offset=abjad.Offset((4, 1)),
                         layer=3,
-                        voice_name='Viola 1 LH',
+                        voice_name='B',
                         ),
                     ]
                 )

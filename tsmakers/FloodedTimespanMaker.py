@@ -14,8 +14,8 @@ class FloodedTimespanMaker(TimespanMaker):
         tsmakers.FloodedTimespanMaker()
 
         >>> music_specifiers = {
-        ...     'Violin Voice': 'violin music',
-        ...     'Cello Voice': 'cello music',
+        ...     'A': 'a music',
+        ...     'B': 'b music',
         ... }
         >>> target_timespan = abjad.Timespan((1, 2), (2, 1))
         >>> timespan_list = timespan_maker(
@@ -32,7 +32,7 @@ class FloodedTimespanMaker(TimespanMaker):
         ...         for _ in timespan_list
         ...     ]
         ... )
-        >>> abjad.show(ts_list, scale=0.5, key="annotation", sort_callable=evans.human_sorted_keys) # doctest: +SKIP
+        >>> abjad.show(ts_list, scale=0.5, key="annotation") # doctest: +SKIP
 
         .. docs::
 
@@ -42,14 +42,14 @@ class FloodedTimespanMaker(TimespanMaker):
                     tsmakers.PerformedTimespan(
                         start_offset=abjad.Offset((1, 2)),
                         stop_offset=abjad.Offset((2, 1)),
-                        music_specifier='cello music',
-                        voice_name='Cello Voice',
+                        music_specifier='a music',
+                        voice_name='A',
                         ),
                     tsmakers.PerformedTimespan(
                         start_offset=abjad.Offset((1, 2)),
                         stop_offset=abjad.Offset((2, 1)),
-                        music_specifier='violin music',
-                        voice_name='Violin Voice',
+                        music_specifier='b music',
+                        voice_name='B',
                         ),
                     ]
                 )
@@ -58,16 +58,16 @@ class FloodedTimespanMaker(TimespanMaker):
 
         >>> music_specifier = tsmakers.CompositeMusicSpecifier(
         ...     primary_music_specifier='one',
-        ...     primary_voice_name='Viola 1 RH',
+        ...     primary_voice_name='A',
         ...     rotation_indices=(0, 1, -1),
-        ...     secondary_voice_name='Viola 1 LH',
+        ...     secondary_voice_name='B',
         ...     secondary_music_specifier=tsmakers.MusicSpecifierSequence(
         ...         application_rate='phrase',
         ...         music_specifiers=['two', 'three', 'four'],
         ...         ),
         ...     )
         >>> music_specifiers = {
-        ...     'Viola 1 Performer Group': music_specifier,
+        ...     'Performer Group': music_specifier,
         ...     }
         >>> timespan_list = timespan_maker(
         ...     music_specifiers=music_specifiers,
@@ -83,7 +83,7 @@ class FloodedTimespanMaker(TimespanMaker):
         ...         for _ in timespan_list
         ...     ]
         ... )
-        >>> abjad.show(ts_list, scale=0.5, key="annotation", sort_callable=evans.human_sorted_keys) # doctest: +SKIP
+        >>> abjad.show(ts_list, scale=0.5, key="annotation") # doctest: +SKIP
 
         .. docs::
 
@@ -93,14 +93,14 @@ class FloodedTimespanMaker(TimespanMaker):
                     tsmakers.PerformedTimespan(
                         start_offset=abjad.Offset((1, 2)),
                         stop_offset=abjad.Offset((2, 1)),
-                        music_specifier='two',
-                        voice_name='Viola 1 LH',
+                        music_specifier='one',
+                        voice_name='A',
                         ),
                     tsmakers.PerformedTimespan(
                         start_offset=abjad.Offset((1, 2)),
                         stop_offset=abjad.Offset((2, 1)),
-                        music_specifier='one',
-                        voice_name='Viola 1 RH',
+                        music_specifier='two',
+                        voice_name='B',
                         ),
                     ]
                 )
