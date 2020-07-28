@@ -130,7 +130,7 @@ class PerformedTimespan(abjad.Timespan):
             names.remove("original_start_offset")
         if self.original_stop_offset == self.stop_offset:
             names.remove("original_stop_offset")
-        return abjad.FormatSpecification(storage_format_kwargs_names=names,)
+        return abjad.FormatSpecification(storage_format_keyword_names=names,)
 
     ### PUBLIC METHODS ###
 
