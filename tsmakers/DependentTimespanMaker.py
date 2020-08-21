@@ -201,11 +201,11 @@ class DependentTimespanMaker(TimespanMaker):
             if self.inspect_music and timespan.music:
                 outer_start_offset = timespan.start_offset
                 inner_start_offset = (
-                    abjad.inspect(timespan.music).timespan().start_offset
+                    abjad.get.timespan(timespan.music).start_offset
                 )
                 assert inner_start_offset == 0
                 for division in timespan.music:
-                    division_timespan = abjad.inspect(division).timespan()
+                    division_timespan = abjad.get.timespan(division)
                     division_timespan = division_timespan.translate(outer_start_offset)
                     preexisting_timespans.append(division_timespan)
         preexisting_timespans & target_timespan
