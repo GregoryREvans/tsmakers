@@ -114,7 +114,11 @@ class FloodedTimespanMaker(TimespanMaker):
     ### INITIALIZER ###
 
     def __init__(
-        self, division_masks=None, padding=None, seed=None, timespan_specifier=None,
+        self,
+        division_masks=None,
+        padding=None,
+        seed=None,
+        timespan_specifier=None,
     ):
         TimespanMaker.__init__(
             self,

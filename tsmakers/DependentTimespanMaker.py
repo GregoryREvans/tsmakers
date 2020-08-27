@@ -177,7 +177,9 @@ class DependentTimespanMaker(TimespanMaker):
     ### PRIVATE METHODS ###
 
     def _collect_preexisting_timespans(
-        self, target_timespan=None, timespan_list=None,
+        self,
+        target_timespan=None,
+        timespan_list=None,
     ):
         preexisting_timespans = abjad.TimespanList()
         for timespan in timespan_list:
@@ -200,9 +202,7 @@ class DependentTimespanMaker(TimespanMaker):
             preexisting_timespans.append(timespan)
             if self.inspect_music and timespan.music:
                 outer_start_offset = timespan.start_offset
-                inner_start_offset = (
-                    abjad.get.timespan(timespan.music).start_offset
-                )
+                inner_start_offset = abjad.get.timespan(timespan.music).start_offset
                 assert inner_start_offset == 0
                 for division in timespan.music:
                     division_timespan = abjad.get.timespan(division)
@@ -241,7 +241,8 @@ class DependentTimespanMaker(TimespanMaker):
         rotation_indices = abjad.CyclicTuple(rotation_indices)
         context_counter = collections.Counter()
         preexisting_timespans = self._collect_preexisting_timespans(
-            target_timespan=target_timespan, timespan_list=timespan_list,
+            target_timespan=target_timespan,
+            timespan_list=timespan_list,
         )
         partitioned_timespans = self._partition_preexisting_timespans(
             preexisting_timespans

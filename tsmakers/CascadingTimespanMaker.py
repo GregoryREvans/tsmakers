@@ -199,11 +199,17 @@ class CascadingTimespanMaker(TimespanMaker):
         division_masks=None,
         fuse_groups=None,
         padding=None,
-        playing_talea=rmakers.Talea(counts=[4], denominator=16,),
+        playing_talea=rmakers.Talea(
+            counts=[4],
+            denominator=16,
+        ),
         playing_groupings=(1,),
         seed=None,
         repeat=True,
-        silence_talea=rmakers.Talea(counts=[4], denominator=16,),
+        silence_talea=rmakers.Talea(
+            counts=[4],
+            denominator=16,
+        ),
         timespan_specifier=None,
     ):
         TimespanMaker.__init__(

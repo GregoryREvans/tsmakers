@@ -14,7 +14,10 @@ class TimespanSpecifier(object):
     ### INITIALIZER ###
 
     def __init__(
-        self, forbid_fusing=None, forbid_splitting=None, minimum_duration=None,
+        self,
+        forbid_fusing=None,
+        forbid_splitting=None,
+        minimum_duration=None,
     ):
         if forbid_fusing is not None:
             forbid_fusing = bool(forbid_fusing)

@@ -167,7 +167,10 @@ class BoundaryTimespanMaker(TimespanMaker):
                 start_duration = abjad.Duration(start_talea)
                 counts = [start_duration.numerator]
                 denominator = start_duration.denominator
-                start_talea = rmakers.Talea(counts=counts, denominator=denominator,)
+                start_talea = rmakers.Talea(
+                    counts=counts,
+                    denominator=denominator,
+                )
             assert isinstance(start_talea, rmakers.Talea)
             assert start_talea.counts
             assert all(0 < x for x in start_talea.counts)
@@ -186,7 +189,10 @@ class BoundaryTimespanMaker(TimespanMaker):
                 stop_duration = abjad.Duration(stop_talea)
                 counts = [stop_duration.numerator]
                 denominator = stop_duration.denominator
-                stop_talea = rmakers.Talea(counts=counts, denominator=denominator,)
+                stop_talea = rmakers.Talea(
+                    counts=counts,
+                    denominator=denominator,
+                )
             assert isinstance(stop_talea, rmakers.Talea)
             assert stop_talea.counts
             assert all(0 < x for x in stop_talea.counts)
@@ -218,12 +224,20 @@ class BoundaryTimespanMaker(TimespanMaker):
     ### PRIVATE METHODS ###
 
     def _collect_preexisting_timespans(
-        self, target_timespan=None, timespan_list=None,
+        self,
+        target_timespan=None,
+        timespan_list=None,
     ):
 
         preexisting_timespans = abjad.TimespanList()
         for timespan in timespan_list:
-            assert isinstance(timespan, (PerformedTimespan, SilentTimespan,))
+            assert isinstance(
+                timespan,
+                (
+                    PerformedTimespan,
+                    SilentTimespan,
+                ),
+            )
             if isinstance(timespan, SilentTimespan):
                 continue
             if self.voice_names and timespan.voice_name not in self.voice_names:
@@ -288,7 +302,8 @@ class BoundaryTimespanMaker(TimespanMaker):
 
         context_counter = collections.Counter()
         preexisting_timespans = self._collect_preexisting_timespans(
-            target_timespan=target_timespan, timespan_list=timespan_list,
+            target_timespan=target_timespan,
+            timespan_list=timespan_list,
         )
         new_timespan_mapping = {}
         for group_index, group in enumerate(preexisting_timespans.partition(True)):

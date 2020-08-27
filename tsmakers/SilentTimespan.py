@@ -25,7 +25,9 @@ class SilentTimespan(abjad.Timespan):
         handler=None,
     ):
         abjad.Timespan.__init__(
-            self, start_offset=start_offset, stop_offset=stop_offset,
+            self,
+            start_offset=start_offset,
+            stop_offset=stop_offset,
         )
         if layer is not None:
             layer = int(layer)
@@ -36,7 +38,10 @@ class SilentTimespan(abjad.Timespan):
     ### PRIVATE METHODS ###
 
     def _as_postscript(
-        self, postscript_x_offset, postscript_y_offset, postscript_scale,
+        self,
+        postscript_x_offset,
+        postscript_y_offset,
+        postscript_scale,
     ):
         start = float(self.start_offset) * postscript_scale
         start -= postscript_x_offset

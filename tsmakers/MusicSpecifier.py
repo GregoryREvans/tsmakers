@@ -120,7 +120,10 @@ class MusicSpecifier(HashCachingObject):
         pitch_handler = self.pitch_handler
         if pitch_handler is not None:
             pitch_handler = pitch_handler.transpose(expr)
-        return abjad.new(self, pitch_handler=pitch_handler,)
+        return abjad.new(
+            self,
+            pitch_handler=pitch_handler,
+        )
 
     ### PUBLIC PROPERTIES ###
 

@@ -605,12 +605,18 @@ class TaleaTimespanMaker(TimespanMaker):
         initial_silence_talea=None,
         division_masks=None,
         padding=None,
-        playing_talea=rmakers.Talea(counts=[4], denominator=16,),
+        playing_talea=rmakers.Talea(
+            counts=[4],
+            denominator=16,
+        ),
         playing_groupings=(1,),
         reflect=None,
         repeat=True,
         seed=None,
-        silence_talea=rmakers.Talea(counts=[4], denominator=16,),
+        silence_talea=rmakers.Talea(
+            counts=[4],
+            denominator=16,
+        ),
         step_anchor=abjad.Right,
         synchronize_groupings=False,
         synchronize_step=False,
@@ -709,7 +715,9 @@ class TaleaTimespanMaker(TimespanMaker):
         )
 
         if self.reflect:
-            new_timespan_list = new_timespan_list.reflect(axis=target_timespan.axis,)
+            new_timespan_list = new_timespan_list.reflect(
+                axis=target_timespan.axis,
+            )
 
         return new_timespan_list
 

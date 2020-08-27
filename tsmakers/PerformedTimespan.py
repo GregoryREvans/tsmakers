@@ -50,7 +50,9 @@ class PerformedTimespan(abjad.Timespan):
         handler=None,
     ):
         abjad.Timespan.__init__(
-            self, start_offset=start_offset, stop_offset=stop_offset,
+            self,
+            start_offset=start_offset,
+            stop_offset=stop_offset,
         )
         if divisions is not None:
             divisions = tuple(abjad.Duration(_) for _ in divisions)
@@ -101,7 +103,10 @@ class PerformedTimespan(abjad.Timespan):
     ### PRIVATE METHODS ###
 
     def _as_postscript(
-        self, postscript_x_offset, postscript_y_offset, postscript_scale,
+        self,
+        postscript_x_offset,
+        postscript_y_offset,
+        postscript_scale,
     ):
         start = float(self.start_offset) * postscript_scale
         start -= postscript_x_offset
@@ -130,7 +135,9 @@ class PerformedTimespan(abjad.Timespan):
             names.remove("original_start_offset")
         if self.original_stop_offset == self.stop_offset:
             names.remove("original_stop_offset")
-        return abjad.FormatSpecification(storage_format_keyword_names=names,)
+        return abjad.FormatSpecification(
+            storage_format_keyword_names=names,
+        )
 
     ### PUBLIC METHODS ###
 
@@ -141,7 +148,9 @@ class PerformedTimespan(abjad.Timespan):
             left_divisions, right_divisions = None, None
             if self.divisions is not None:
                 left_divisions, right_divisions = abjad.split_sequence(
-                    self.divisions, [offset - self.start_offset], overhang=True,
+                    self.divisions,
+                    [offset - self.start_offset],
+                    overhang=True,
                 )
             left = abjad.new(
                 self,
