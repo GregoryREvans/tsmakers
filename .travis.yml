@@ -60,6 +60,14 @@ before_install:
     - git clone https://github.com/trevorbaca/baca.git $BACA
     - export PYTHONPATH=$BACA/:$PYTHONPATH
 
+    # clone & install evans:
+    - evans=/tmp/evans
+    - git clone https://github.com/GregoryREvans/evans.git $evans
+    - pip install -e $evans
+    - export PATH=$evans/scr/:$PATH
+    - export MYPYPATH=$MYPYPATH:$evans
+    - ln -s $evans/dotfiles/.mypy.ini ~/.mypy.ini
+
     # log setup:
     - echo $PATH
     - echo $PYTHONPATH
