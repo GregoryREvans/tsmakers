@@ -6,25 +6,26 @@ from abjadext import rmakers
 
 
 class MusicSpecifierSequence(object):
-    r"""A music specifier sequence.
+    r"""
+    A music specifier sequence.
 
-    ::
+    ..  container:: example
 
         >>> sequence_a = tsmakers.MusicSpecifierSequence(
         ...     music_specifiers='music',
         ...     )
-        >>> abjad.f(sequence_a)
+        >>> print(abjad.storage(sequence_a))
         tsmakers.MusicSpecifierSequence(
             music_specifiers=('music',),
             )
 
-    ::
+    ..  container:: example
 
         >>> sequence_b = tsmakers.MusicSpecifierSequence(
         ...     application_rate='phrase',
         ...     music_specifiers=['one', 'two', 'three'],
         ...     )
-        >>> abjad.f(sequence_b)
+        >>> print(abjad.storage(sequence_b))
         tsmakers.MusicSpecifierSequence(
             application_rate='phrase',
             music_specifiers=('one', 'two', 'three'),
@@ -42,7 +43,9 @@ class MusicSpecifierSequence(object):
     ### INITIALIZER ###
 
     def __init__(
-        self, application_rate=None, music_specifiers=None,
+        self,
+        application_rate=None,
+        music_specifiers=None,
     ):
         if application_rate is not None:
             application_rate = application_rate or "phrase"
@@ -155,7 +158,10 @@ class MusicSpecifierSequence(object):
 
     def transpose(self, expr):
         music_specifiers = [_.transpose(expr) for _ in self.music_specifiers]
-        return abjad.new(self, music_specifiers=music_specifiers,)
+        return abjad.new(
+            self,
+            music_specifiers=music_specifiers,
+        )
 
     ### PUBLIC PROPERTIES ###
 

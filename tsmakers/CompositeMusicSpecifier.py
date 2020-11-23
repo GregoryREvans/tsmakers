@@ -9,61 +9,72 @@ from .MusicSpecifierSequence import MusicSpecifierSequence
 class CompositeMusicSpecifier(HashCachingObject):
     r"""A composite music specifier.
 
-    ::
+    ..  container:: example
 
         >>> music_specifier = tsmakers.CompositeMusicSpecifier(
         ...     primary_music_specifier='one',
-        ...     primary_voice_name='Viola 1 RH',
+        ...     primary_voice_name='A',
         ...     rotation_indices=(0, 1, -1),
-        ...     secondary_voice_name='Viola 1 LH',
+        ...     secondary_voice_name='B',
         ...     secondary_music_specifier=tsmakers.MusicSpecifierSequence(
         ...         application_rate='phrase',
         ...         music_specifiers=('two', 'three', 'four'),
         ...         ),
         ...     )
-
-    ::
-
         >>> durations = [1, 2]
         >>> timespans = music_specifier(
         ...     durations=durations,
         ...     layer=1,
         ...     )
-        >>> abjad.f(timespans)
-        abjad.TimespanList(
-            [
-                tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset((0, 1)),
-                    stop_offset=abjad.Offset((1, 1)),
-                    layer=1,
-                    music_specifier='two',
-                    voice_name='Viola 1 LH',
-                    ),
-                tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset((0, 1)),
-                    stop_offset=abjad.Offset((1, 1)),
-                    layer=1,
-                    music_specifier='one',
-                    voice_name='Viola 1 RH',
-                    ),
-                tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset((1, 1)),
-                    stop_offset=abjad.Offset((3, 1)),
-                    layer=1,
-                    music_specifier='two',
-                    voice_name='Viola 1 LH',
-                    ),
-                tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset((1, 1)),
-                    stop_offset=abjad.Offset((3, 1)),
-                    layer=1,
-                    music_specifier='one',
-                    voice_name='Viola 1 RH',
-                    ),
-                ]
-            )
+        >>> ts_list = abjad.TimespanList(
+        ...     [
+        ...         abjad.AnnotatedTimespan(
+        ...             start_offset=_.start_offset,
+        ...             stop_offset=_.stop_offset,
+        ...             annotation=_.voice_name,
+        ...         )
+        ...         for _ in timespans
+        ...     ]
+        ... )
+        >>> abjad.show(ts_list, scale=0.5, key="annotation") # doctest: +SKIP
 
-    ::
+        .. docs::
+
+            >>> print(abjad.storage(timespans))
+            abjad.TimespanList(
+                [
+                    tsmakers.PerformedTimespan(
+                        start_offset=abjad.Offset((0, 1)),
+                        stop_offset=abjad.Offset((1, 1)),
+                        layer=1,
+                        music_specifier='one',
+                        voice_name='A',
+                        ),
+                    tsmakers.PerformedTimespan(
+                        start_offset=abjad.Offset((0, 1)),
+                        stop_offset=abjad.Offset((1, 1)),
+                        layer=1,
+                        music_specifier='two',
+                        voice_name='B',
+                        ),
+                    tsmakers.PerformedTimespan(
+                        start_offset=abjad.Offset((1, 1)),
+                        stop_offset=abjad.Offset((3, 1)),
+                        layer=1,
+                        music_specifier='one',
+                        voice_name='A',
+                        ),
+                    tsmakers.PerformedTimespan(
+                        start_offset=abjad.Offset((1, 1)),
+                        stop_offset=abjad.Offset((3, 1)),
+                        layer=1,
+                        music_specifier='two',
+                        voice_name='B',
+                        ),
+                    ]
+                )
+
+    .. container:: example
 
         >>> durations = [1, 2]
         >>> timespans = music_specifier(
@@ -71,41 +82,55 @@ class CompositeMusicSpecifier(HashCachingObject):
         ...     layer=2,
         ...     seed=1,
         ...     )
-        >>> abjad.f(timespans)
-        abjad.TimespanList(
-            [
-                tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset((0, 1)),
-                    stop_offset=abjad.Offset((1, 1)),
-                    layer=2,
-                    music_specifier='one',
-                    voice_name='Viola 1 RH',
-                    ),
-                tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset((0, 1)),
-                    stop_offset=abjad.Offset((2, 1)),
-                    layer=2,
-                    music_specifier='three',
-                    voice_name='Viola 1 LH',
-                    ),
-                tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset((1, 1)),
-                    stop_offset=abjad.Offset((3, 1)),
-                    layer=2,
-                    music_specifier='one',
-                    voice_name='Viola 1 RH',
-                    ),
-                tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset((2, 1)),
-                    stop_offset=abjad.Offset((3, 1)),
-                    layer=2,
-                    music_specifier='three',
-                    voice_name='Viola 1 LH',
-                    ),
-                ]
-            )
+        >>> ts_list = abjad.TimespanList(
+        ...     [
+        ...         abjad.AnnotatedTimespan(
+        ...             start_offset=_.start_offset,
+        ...             stop_offset=_.stop_offset,
+        ...             annotation=_.voice_name,
+        ...         )
+        ...         for _ in timespans
+        ...     ]
+        ... )
+        >>> abjad.show(ts_list, scale=0.5, key="annotation") # doctest: +SKIP
 
-    ::
+        .. docs::
+
+            >>> print(abjad.storage(timespans))
+            abjad.TimespanList(
+                [
+                    tsmakers.PerformedTimespan(
+                        start_offset=abjad.Offset((0, 1)),
+                        stop_offset=abjad.Offset((1, 1)),
+                        layer=2,
+                        music_specifier='one',
+                        voice_name='A',
+                        ),
+                    tsmakers.PerformedTimespan(
+                        start_offset=abjad.Offset((0, 1)),
+                        stop_offset=abjad.Offset((2, 1)),
+                        layer=2,
+                        music_specifier='three',
+                        voice_name='B',
+                        ),
+                    tsmakers.PerformedTimespan(
+                        start_offset=abjad.Offset((1, 1)),
+                        stop_offset=abjad.Offset((3, 1)),
+                        layer=2,
+                        music_specifier='one',
+                        voice_name='A',
+                        ),
+                    tsmakers.PerformedTimespan(
+                        start_offset=abjad.Offset((2, 1)),
+                        stop_offset=abjad.Offset((3, 1)),
+                        layer=2,
+                        music_specifier='three',
+                        voice_name='B',
+                        ),
+                    ]
+                )
+
+    .. container:: example
 
         >>> durations = [1, 2]
         >>> timespans = music_specifier(
@@ -114,63 +139,77 @@ class CompositeMusicSpecifier(HashCachingObject):
         ...     padding=1,
         ...     seed=2,
         ...     )
-        >>> abjad.f(timespans)
-        abjad.TimespanList(
-            [
-                tsmakers.SilentTimespan(
-                    start_offset=abjad.Offset((-1, 1)),
-                    stop_offset=abjad.Offset((0, 1)),
-                    layer=3,
-                    voice_name='Viola 1 RH',
-                    ),
-                tsmakers.SilentTimespan(
-                    start_offset=abjad.Offset((-1, 1)),
-                    stop_offset=abjad.Offset((0, 1)),
-                    layer=3,
-                    voice_name='Viola 1 LH',
-                    ),
-                tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset((0, 1)),
-                    stop_offset=abjad.Offset((1, 1)),
-                    layer=3,
-                    music_specifier='one',
-                    voice_name='Viola 1 RH',
-                    ),
-                tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset((0, 1)),
-                    stop_offset=abjad.Offset((2, 1)),
-                    layer=3,
-                    music_specifier='four',
-                    voice_name='Viola 1 LH',
-                    ),
-                tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset((1, 1)),
-                    stop_offset=abjad.Offset((3, 1)),
-                    layer=3,
-                    music_specifier='one',
-                    voice_name='Viola 1 RH',
-                    ),
-                tsmakers.PerformedTimespan(
-                    start_offset=abjad.Offset((2, 1)),
-                    stop_offset=abjad.Offset((3, 1)),
-                    layer=3,
-                    music_specifier='four',
-                    voice_name='Viola 1 LH',
-                    ),
-                tsmakers.SilentTimespan(
-                    start_offset=abjad.Offset((3, 1)),
-                    stop_offset=abjad.Offset((4, 1)),
-                    layer=3,
-                    voice_name='Viola 1 RH',
-                    ),
-                tsmakers.SilentTimespan(
-                    start_offset=abjad.Offset((3, 1)),
-                    stop_offset=abjad.Offset((4, 1)),
-                    layer=3,
-                    voice_name='Viola 1 LH',
-                    ),
-                ]
-            )
+        >>> ts_list = abjad.TimespanList(
+        ...     [
+        ...         abjad.AnnotatedTimespan(
+        ...             start_offset=_.start_offset,
+        ...             stop_offset=_.stop_offset,
+        ...             annotation=_.voice_name,
+        ...         )
+        ...         for _ in timespans
+        ...     ]
+        ... )
+        >>> abjad.show(ts_list, scale=0.5, key="annotation") # doctest: +SKIP
+
+        .. docs::
+
+            >>> print(abjad.storage(timespans))
+            abjad.TimespanList(
+                [
+                    tsmakers.SilentTimespan(
+                        start_offset=abjad.Offset((-1, 1)),
+                        stop_offset=abjad.Offset((0, 1)),
+                        layer=3,
+                        voice_name='A',
+                        ),
+                    tsmakers.SilentTimespan(
+                        start_offset=abjad.Offset((-1, 1)),
+                        stop_offset=abjad.Offset((0, 1)),
+                        layer=3,
+                        voice_name='B',
+                        ),
+                    tsmakers.PerformedTimespan(
+                        start_offset=abjad.Offset((0, 1)),
+                        stop_offset=abjad.Offset((1, 1)),
+                        layer=3,
+                        music_specifier='one',
+                        voice_name='A',
+                        ),
+                    tsmakers.PerformedTimespan(
+                        start_offset=abjad.Offset((0, 1)),
+                        stop_offset=abjad.Offset((2, 1)),
+                        layer=3,
+                        music_specifier='four',
+                        voice_name='B',
+                        ),
+                    tsmakers.PerformedTimespan(
+                        start_offset=abjad.Offset((1, 1)),
+                        stop_offset=abjad.Offset((3, 1)),
+                        layer=3,
+                        music_specifier='one',
+                        voice_name='A',
+                        ),
+                    tsmakers.PerformedTimespan(
+                        start_offset=abjad.Offset((2, 1)),
+                        stop_offset=abjad.Offset((3, 1)),
+                        layer=3,
+                        music_specifier='four',
+                        voice_name='B',
+                        ),
+                    tsmakers.SilentTimespan(
+                        start_offset=abjad.Offset((3, 1)),
+                        stop_offset=abjad.Offset((4, 1)),
+                        layer=3,
+                        voice_name='A',
+                        ),
+                    tsmakers.SilentTimespan(
+                        start_offset=abjad.Offset((3, 1)),
+                        stop_offset=abjad.Offset((4, 1)),
+                        layer=3,
+                        voice_name='B',
+                        ),
+                    ]
+                )
 
     """
 

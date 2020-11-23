@@ -11,7 +11,8 @@ from .TimespanSpecifier import TimespanSpecifier
 
 
 class TimespanMaker(object):
-    r"""Abstract base class for timespan makers.
+    r"""
+    Abstract base class for timespan makers.
     """
 
     ### CLASS VARIABLES ###
@@ -27,12 +28,18 @@ class TimespanMaker(object):
 
     @abc.abstractmethod
     def __init__(
-        self, division_masks=None, padding=None, seed=None, timespan_specifier=None,
+        self,
+        division_masks=None,
+        padding=None,
+        seed=None,
+        timespan_specifier=None,
     ):
         if division_masks is not None:
             if isinstance(division_masks, abjad.Pattern):
                 division_masks = (division_masks,)
-            division_masks = abjad.PatternTuple(items=division_masks,)
+            division_masks = abjad.PatternTuple(
+                items=division_masks,
+            )
         self._output_masks = division_masks
         if padding is not None:
             padding = abjad.Duration(padding)
@@ -56,7 +63,9 @@ class TimespanMaker(object):
         timespan_list=None,
     ):
         if not isinstance(timespan_list, abjad.TimespanList):
-            timespan_list = abjad.TimespanList(timespan_list,)
+            timespan_list = abjad.TimespanList(
+                timespan_list,
+            )
         if target_timespan is None:
             if timespan_list:
                 target_timespan = timespan_list.timespan
@@ -101,19 +110,25 @@ class TimespanMaker(object):
             ]
         )
         timespan_list = self(
-            layer=0, music_specifiers=music_specifiers, target_timespan=target_timespan,
+            layer=0,
+            music_specifiers=music_specifiers,
+            target_timespan=target_timespan,
         )
         ti_lilypond_file = timespan_list.__illustrate__(
-            key="voice_name", range_=target_timespan, scale=scale,
+            key="voice_name",
+            range_=target_timespan,
+            scale=scale,
         )
         ti_markup = ti_lilypond_file.items[-1]
         offset_counter = abjad.OffsetCounter(timespan_list)
         oc_lilypond_file = offset_counter.__illustrate__(
-            range_=target_timespan, scale=scale,
+            range_=target_timespan,
+            scale=scale,
         )
         oc_markup = oc_lilypond_file.items[-1]
         lilypond_file = abjad.LilyPondFile.new(
-            default_paper_size=["tabloid", "landscape"], date_time_token=False,
+            default_paper_size=["tabloid", "landscape"],
+            date_time_token=False,
         )
         lilypond_file.items.extend(
             [
@@ -164,7 +179,10 @@ class TimespanMaker(object):
         return result
 
     def _cleanup_silent_timespans(
-        self, layer, silenced_context_names, timespans,
+        self,
+        layer,
+        silenced_context_names,
+        timespans,
     ):
         if not silenced_context_names or not timespans:
             return

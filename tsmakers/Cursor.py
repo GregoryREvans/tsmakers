@@ -6,60 +6,40 @@ class Cursor(object):
 
     ..  container:: example
 
-        ::
+        ..  container::
 
             >>> cursor = tsmakers.Cursor([1, 2, 3])
             >>> next(cursor)
             1
 
-        ::
-
             >>> next(cursor)
             2
 
-        ::
-
             >>> next(cursor)
             3
-
-        ::
 
             >>> next(cursor)
             1
 
-        ::
-
             >>> next(cursor)
             2
 
-        ::
-
             >>> cursor.backtrack()
             2
-
-        ::
 
             >>> cursor.backtrack()
             1
 
-        ::
-
             >>> cursor.backtrack()
             3
 
-        ::
-
             >>> next(cursor)
             3
-
-        ::
 
             >>> next(cursor)
             1
 
     ..  container:: example
-
-        ::
 
             >>> talea = abjadext.rmakers.Talea(
             ...    counts=(2, 1, 3, 2, 4, 1, 1),
