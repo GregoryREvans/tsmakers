@@ -258,7 +258,7 @@ class DependentTimespanMaker(TimespanMaker):
                 if self.include_inner_stops:
                     offsets.add(timespan.stop_offset)
             offsets = tuple(sorted(offsets))
-            durations = abjad.Sequence(abjad.mathx.difference_series(offsets))
+            durations = abjad.Sequence(abjad.math.difference_series(offsets))
             durations = durations.rotate(rotation_index)
             start_offset = offsets[0]
             for context_name, music_specifier in music_specifiers.items():
