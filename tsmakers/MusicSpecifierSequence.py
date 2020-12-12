@@ -62,6 +62,12 @@ class MusicSpecifierSequence(object):
         self._application_rate = application_rate
         self._music_specifiers = music_specifiers
 
+    def __str__(self):
+        return abjad.storage(self)
+
+    def __repr__(self):
+        return abjad.storage(self)
+
     ### SPECIAL METHODS ###
 
     def __call__(
@@ -81,7 +87,7 @@ class MusicSpecifierSequence(object):
         seed = seed or 0
         division_mask_seed = division_mask_seed or 0
         durations = [_ for _ in durations if _]
-        offsets = abjad.mathx.cumulative_sums(durations, start_offset)
+        offsets = abjad.math.cumulative_sums(durations, start_offset)
         if not offsets:
             return timespans
         offset_pair_count = len(offsets) - 1

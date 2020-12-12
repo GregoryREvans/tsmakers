@@ -20,8 +20,6 @@ from .TimespanSpecifier import TimespanSpecifier
 from .tree import TimespanTree, TimespanTreeNode
 
 __all__ = [
-    "TimespanTree",
-    "TimespanTreeNode",
     "BoundaryTimespanMaker",
     "CascadingTimespanMaker",
     "CompositeMusicSpecifier",
@@ -36,4 +34,6 @@ __all__ = [
     "TaleaTimespanMaker",
     "TimespanMaker",
     "TimespanSpecifier",
+    "TimespanTree",
+    "TimespanTreeNode",
 ]

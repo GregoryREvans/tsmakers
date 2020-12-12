@@ -37,7 +37,7 @@ class TimespanMaker(object):
         if division_masks is not None:
             if isinstance(division_masks, abjad.Pattern):
                 division_masks = (division_masks,)
-            division_masks = abjad.PatternList(
+            division_masks = abjad.PatternTuple(
                 items=division_masks,
             )
         self._output_masks = division_masks
@@ -149,7 +149,13 @@ class TimespanMaker(object):
         return lilypond_file
 
     def __format__(self, format_specification=""):
-        return abjad.StorageFormatManager(self).get_storage_format()
+        return abjad.storage(self)
+
+    def __str__(self):
+        return abjad.storage(self)
+
+    def __repr__(self):
+        return abjad.storage(self)
 
     ### PRIVATE METHODS ###
 

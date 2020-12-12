@@ -29,6 +29,12 @@ class TimespanSpecifier(object):
             minimum_duration = abjad.Duration(minimum_duration)
         self._minimum_duration = minimum_duration
 
+    def __str__(self):
+        return abjad.storage(self)
+
+    def __repr__(self):
+        return abjad.storage(self)
+
     ### PUBLIC PROPERTIES ###
 
     @property

@@ -90,6 +90,12 @@ class PerformedTimespan(abjad.Timespan):
         self._voice_name = voice_name
         self._handler = handler
 
+    def __str__(self):
+        return abjad.storage(self)
+
+    def __repr__(self):
+        return abjad.storage(self)
+
     ### SPECIAL METHODS ###
 
     def __lt__(self, expr):
