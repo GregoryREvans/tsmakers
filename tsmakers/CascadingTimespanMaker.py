@@ -18,13 +18,13 @@ class CascadingTimespanMaker(TimespanMaker):
         >>> print(abjad.storage(timespan_maker))
         tsmakers.CascadingTimespanMaker(
             cascade_pattern=(1,),
-            playing_talea=abjadext.specifiers.Talea(
+            playing_talea=rmakers.Talea(
                 [4],
                 16
                 ),
             playing_groupings=(1,),
             repeat=True,
-            silence_talea=abjadext.specifiers.Talea(
+            silence_talea=rmakers.Talea(
                 [4],
                 16
                 ),

@@ -22,17 +22,17 @@ class TaleaTimespanMaker(TimespanMaker):
         ...     )
         >>> print(abjad.storage(timespan_maker))
         tsmakers.TaleaTimespanMaker(
-            initial_silence_talea=abjadext.specifiers.Talea(
+            initial_silence_talea=rmakers.Talea(
                 [0, 4],
                 16
                 ),
-            playing_talea=abjadext.specifiers.Talea(
+            playing_talea=rmakers.Talea(
                 [4],
                 16
                 ),
             playing_groupings=(1,),
             repeat=True,
-            silence_talea=abjadext.specifiers.Talea(
+            silence_talea=rmakers.Talea(
                 [4],
                 16
                 ),
