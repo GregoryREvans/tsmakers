@@ -28,11 +28,11 @@ class BoundaryTimespanMaker(TimespanMaker):
         ...     )
         >>> print(abjad.storage(timespan_maker))
         tsmakers.BoundaryTimespanMaker(
-            start_talea=abjadext.specifiers.Talea(
+            start_talea=rmakers.Talea(
                 [1],
                 2
                 ),
-            stop_talea=abjadext.specifiers.Talea(
+            stop_talea=rmakers.Talea(
                 [1],
                 4
                 ),
