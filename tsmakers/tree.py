@@ -147,7 +147,7 @@ class TimespanTree(object):
 
         ..  docs::
 
-            >>> abjad.f(demotree.tspanlist())
+            >>> print(abjad.storage(demotree.tspanlist()))
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -288,7 +288,7 @@ class TimespanTree(object):
 
         ..  docs::
 
-            >>> abjad.f(demotree_list)
+            >>> print(abjad.storage(demotree_list))
             abjad.TimespanList(
                 [
                     abjad.Timespan(

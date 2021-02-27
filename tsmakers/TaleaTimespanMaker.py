@@ -69,7 +69,7 @@ class TaleaTimespanMaker(TimespanMaker):
 
         .. docs::
 
-            >>> abjad.f(timespan_list)
+            >>> print(abjad.storage(timespan_list))
             abjad.TimespanList(
                 [
                     tsmakers.PerformedTimespan(
